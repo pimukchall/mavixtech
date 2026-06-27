@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mavixtech — Build Smarter, Scale Faster",
+  title: "MAVIXTECH CO., LTD.",
   description:
-    "Mavixtech delivers cutting-edge technology solutions that help businesses build smarter products and scale with confidence.",
+    "MAVIXTECH CO., LTD. — IT, POS, PBX, Cloud & Network Security solutions for hotels, enterprises, and government organizations.",
 };
 
 export default function RootLayout({
