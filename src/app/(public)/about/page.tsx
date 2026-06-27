@@ -8,7 +8,6 @@ import {
   Phone,
   Network,
   Server,
-  CheckCircle2,
   CircleDot,
   ArrowRight,
 } from "lucide-react";
@@ -152,10 +151,10 @@ function ExperienceSection() {
 
 // ─── Our Expertise ────────────────────────────────────────────
 const expertise = [
-  { icon: MonitorSmartphone, label: "POS Solutions" },
+  { icon: Network, label: "Network & Security" },
+  { icon: Server, label: "Server & Backup Management" },
+  { icon: MonitorSmartphone, label: "POS & Hospitality Systems" },
   { icon: Phone, label: "PBX & Communication Systems" },
-  { icon: Network, label: "Network & Firewall" },
-  { icon: Server, label: "Cloud & Server Management" },
 ];
 
 function ExpertiseCard({ icon: Icon, label, delay }: {
