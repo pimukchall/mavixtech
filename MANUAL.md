@@ -160,9 +160,19 @@ Services ที่จะรัน:
 
 | Service | Port | หน้าที่ |
 |---|---|---|
-| `mavixtech-web` | **3002** | Next.js application |
+| `mavixtech-web` | **3002** | Next.js application → http://localhost:3002 |
 | `mavixtech-db` | **3307** | MySQL 8.0 |
-| `mavixtech-pma` | **8081** | phpMyAdmin |
+| `mavixtech-pma` | **8081** | phpMyAdmin → http://localhost:8081 |
+
+### Port Map ทั้งหมดในเครื่อง (ทุกโปรเจ็ค)
+
+> อ้างอิงเพื่อป้องกัน port conflict เมื่อรันหลายโปรเจ็คพร้อมกัน
+
+| โปรเจ็ค | Web / Client | Backend | MySQL | phpMyAdmin |
+|---|---|---|---|---|
+| **emp-project** | 3000 (Nuxt) | 3001 (Express) | 3306 | 8080 |
+| **mavixtech** | **3002** (Next.js) | — (fullstack) | **3307** | **8081** |
+| **tau-project** | 4000 (Next.js) | 4001 | 3308 | 8082 |
 
 ### หลังจาก Docker รัน — Migrate และ Seed
 
