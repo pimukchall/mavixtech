@@ -7,10 +7,12 @@ import Link from "next/link";
 export const dynamic = "force-dynamic";
 
 export default async function ProjectsPage() {
-  const projects = await prisma.project.findMany({
-    where: { published: true },
-    orderBy: [{ featured: "desc" }, { order: "asc" }, { createdAt: "desc" }],
-  });
+  const projects = await prisma.project
+    .findMany({
+      where: { published: true },
+      orderBy: [{ featured: "desc" }, { order: "asc" }, { createdAt: "desc" }],
+    })
+    .catch(() => []);
 
   return (
     <main>
