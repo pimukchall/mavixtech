@@ -9,10 +9,9 @@ import {
   Network,
   Building2,
   Utensils,
-  Hotel,
-  Landmark,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -87,9 +86,17 @@ function CapabilityCard({ icon: Icon, label, desc, delay }: {
   );
 }
 
-// ─── Industry card ────────────────────────────────────────────
-function IndustryCard({ icon: Icon, label, sub, delay }: {
-  icon: React.ElementType; label: string; sub: string; delay: number;
+// ─── Client logo card ─────────────────────────────────────────
+const clients = [
+  { src: "/Acara-2.jpg", name: "ACARA", sub: "Hotel & Hospitality" },
+  { src: "/EMP-1-150x150.jpg", name: "Emperor", sub: "Enterprise" },
+  { src: "/Sheraton-Samui-1-150x150.jpg", name: "Sheraton Samui", sub: "International Hotel" },
+  { src: "/VanaBelle-Samui-1-150x150.jpg", name: "VanaBelle Samui", sub: "Luxury Resort" },
+  { src: "/LeoAngelo-150x150.jpg", name: "LeoAngelo", sub: "Hotel & Hospitality" },
+];
+
+function ClientCard({ src, name, sub, delay }: {
+  src: string; name: string; sub: string; delay: number;
 }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
@@ -101,10 +108,10 @@ function IndustryCard({ icon: Icon, label, sub, delay }: {
       transition={{ delay, duration: 0.4 }}
       className="rounded-2xl border border-border bg-card p-6 flex flex-col items-center gap-3 hover:border-primary/30 hover:shadow-sm transition-all"
     >
-      <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center">
-        <Icon className="w-7 h-7 text-primary" />
+      <div className="w-24 h-24 rounded-xl bg-white border border-border flex items-center justify-center overflow-hidden">
+        <Image src={src} alt={name} width={96} height={96} className="object-contain w-full h-full" />
       </div>
-      <p className="font-bold text-sm">{label}</p>
+      <p className="font-bold text-sm">{name}</p>
       <p className="text-xs text-muted-foreground">{sub}</p>
     </motion.div>
   );
@@ -205,27 +212,34 @@ function TransformSection() {
   );
 }
 
-// ─── Industries section ───────────────────────────────────────
-function IndustriesSection() {
+// ─── Clients section ──────────────────────────────────────────
+function ClientsSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
   return (
     <section className="py-24 px-6 bg-secondary/30 border-y border-border">
       <div className="max-w-5xl mx-auto text-center">
-        <motion.h2
+        <motion.p
           ref={ref}
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="text-primary text-sm font-semibold uppercase tracking-widest mb-3"
+        >
+          Our Clients
+        </motion.p>
+        <motion.h2
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.55 }}
+          transition={{ delay: 0.05, duration: 0.55 }}
           className="text-3xl md:text-4xl font-bold mb-12"
         >
-          Industries We <span className="gradient-text">Serve</span>
+          Trusted by Leading <span className="gradient-text">Organizations</span>
         </motion.h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          <IndustryCard icon={Hotel} label="ACARA" sub="Hotel & Hospitality" delay={0} />
-          <IndustryCard icon={Hotel} label="Nana Nally Luxury" sub="Luxury Resort" delay={0.1} />
-          <IndustryCard icon={Hotel} label="Sheraton" sub="International Hotel" delay={0.2} />
-          <IndustryCard icon={Landmark} label="Emperor" sub="Enterprise" delay={0.3} />
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+          {clients.map((c, i) => (
+            <ClientCard key={c.name} src={c.src} name={c.name} sub={c.sub} delay={i * 0.1} />
+          ))}
         </div>
       </div>
     </section>
@@ -312,7 +326,7 @@ export default function Home() {
 
       <TrustedSection />
       <TransformSection />
-      <IndustriesSection />
+      <ClientsSection />
     </main>
   );
 }
