@@ -1,5 +1,6 @@
 import { createNews } from "../../actions";
 import { FormField, FormCheckbox } from "@/components/admin/AdminFormField";
+import { ImageUpload } from "@/components/admin/ImageUpload";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
@@ -25,7 +26,7 @@ export default function NewNewsPage() {
           textarea
           placeholder="เนื้อหาข่าวสาร..."
         />
-        <FormField label="URL รูปภาพปก" name="imageUrl" placeholder="https://..." />
+        <ImageUpload name="imageUrl" folder="mavixtech/news" label="รูปภาพปก" />
         <div className="pt-2">
           <FormCheckbox
             label="เผยแพร่ทันที"

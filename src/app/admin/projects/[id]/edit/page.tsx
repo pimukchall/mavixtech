@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import { updateProject } from "../../../actions";
 import { FormField, FormCheckbox } from "@/components/admin/AdminFormField";
+import { ImageUpload } from "@/components/admin/ImageUpload";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
@@ -37,7 +38,7 @@ export default async function EditProjectPage({
           textarea
           defaultValue={project.description}
         />
-        <FormField label="URL รูปภาพ" name="imageUrl" defaultValue={project.imageUrl ?? ""} />
+        <ImageUpload name="imageUrl" folder="mavixtech/projects" label="รูปภาพผลงาน" defaultValue={project.imageUrl ?? ""} />
         <FormField
           label="Tags"
           name="tags"
