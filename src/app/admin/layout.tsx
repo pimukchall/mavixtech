@@ -1,7 +1,8 @@
 import { auth, signOut } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { Zap, LayoutDashboard, FolderOpen, Newspaper, LogOut, MessageSquare } from "lucide-react";
+import { LayoutDashboard, FolderOpen, Newspaper, LogOut, MessageSquare } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
@@ -23,9 +24,7 @@ export default async function AdminLayout({
       <aside className="w-60 border-r border-border bg-card/40 flex flex-col shrink-0">
         <div className="px-6 py-5 border-b border-border">
           <Link href="/admin" className="flex items-center gap-2 font-bold text-lg">
-            <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
-              <Zap className="w-3.5 h-3.5 text-primary-foreground" />
-            </div>
+            <Image src="/logo.png" alt="Mavixtech" width={30} height={30} className="object-contain" />
             <span className="gradient-text">Mavixtech</span>
           </Link>
         </div>
@@ -54,7 +53,8 @@ export default async function AdminLayout({
           <form
             action={async () => {
               "use server";
-              await signOut({ redirectTo: "/login" });
+              await signOut({ redirect: false });
+              redirect("/login");
             }}
           >
             <button className="flex items-center gap-2 w-full px-3 py-2 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors">

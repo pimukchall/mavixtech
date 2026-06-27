@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Zap } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 const links = [
@@ -36,9 +37,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 font-bold text-xl">
-          <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-            <Zap className="w-4 h-4 text-primary-foreground" />
-          </div>
+          <Image src="/logo.png" alt="Mavixtech" width={36} height={36} className="object-contain" />
           <span className="gradient-text">Mavixtech</span>
         </Link>
 
@@ -55,12 +54,12 @@ export default function Navbar() {
         </nav>
 
         <div className="hidden md:flex items-center gap-3">
-          <Button variant="ghost" size="sm">
-            Log in
-          </Button>
-          <Button size="sm" className="bg-primary hover:bg-primary/90">
-            Get Started
-          </Button>
+          <Link href="/login">
+            <Button variant="ghost" size="sm">Log in</Button>
+          </Link>
+          <Link href="/contact">
+            <Button size="sm" className="bg-primary hover:bg-primary/90">Get Started</Button>
+          </Link>
         </div>
 
         <button
@@ -92,8 +91,12 @@ export default function Navbar() {
                 </Link>
               ))}
               <div className="flex flex-col gap-2 pt-2 border-t border-border">
-                <Button variant="ghost">Log in</Button>
-                <Button className="bg-primary hover:bg-primary/90">Get Started</Button>
+                <Link href="/login" onClick={() => setMenuOpen(false)}>
+                  <Button variant="ghost" className="w-full">Log in</Button>
+                </Link>
+                <Link href="/contact" onClick={() => setMenuOpen(false)}>
+                  <Button className="bg-primary hover:bg-primary/90 w-full">Get Started</Button>
+                </Link>
               </div>
             </nav>
           </motion.div>
