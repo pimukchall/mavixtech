@@ -1,5 +1,6 @@
-import { GitFork, X, Link, MapPin, Phone, Mail } from "lucide-react";
+import { GitFork, X, Link as LinkIcon, MapPin, Phone, Mail } from "lucide-react";
 import Image from "next/image";
+import NextLink from "next/link";
 import { Separator } from "@/components/ui/separator";
 
 export default function Footer() {
@@ -7,10 +8,10 @@ export default function Footer() {
     <footer className="border-t border-border bg-card/30 px-6 pt-16 pb-8">
       <div className="max-w-7xl mx-auto">
         <div className="mb-12">
-          <a href="/" className="flex items-center gap-2 font-bold text-xl mb-4">
+          <NextLink href="/" className="flex items-center gap-2 font-bold text-xl mb-4">
             <Image src="/Icon_M.png" alt="Mavixtech" width={32} height={32} className="object-contain rounded-lg bg-white p-0.5" />
             <span className="gradient-text">Mavixtech</span>
-          </a>
+          </NextLink>
           <ul className="space-y-2 mb-6">
             <li className="flex items-start gap-2 text-sm text-muted-foreground">
               <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-primary" />
@@ -26,7 +27,7 @@ export default function Footer() {
             </li>
           </ul>
           <div className="flex gap-4">
-            {[GitFork, X, Link].map((Icon, i) => (
+            {[GitFork, X, LinkIcon].map((Icon, i) => (
               <a
                 key={i}
                 href="#"
