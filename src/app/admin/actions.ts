@@ -90,3 +90,10 @@ export async function deleteNews(id: string) {
   await prisma.news.delete({ where: { id } });
   revalidatePath("/admin/news");
 }
+
+// --- Contacts ---
+export async function markContactRead(id: string) {
+  await requireAdmin();
+  await prisma.contact.update({ where: { id }, data: { read: true } });
+  revalidatePath("/admin/contacts");
+}

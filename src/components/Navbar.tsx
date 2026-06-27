@@ -4,12 +4,13 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Zap } from "lucide-react";
+import Link from "next/link";
 
 const links = [
-  { label: "Features", href: "#features" },
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Testimonials", href: "#testimonials" },
+  { label: "About Us", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Projects", href: "/projects" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -34,22 +35,22 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2 font-bold text-xl">
+        <Link href="/" className="flex items-center gap-2 font-bold text-xl">
           <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
             <Zap className="w-4 h-4 text-primary-foreground" />
           </div>
           <span className="gradient-text">Mavixtech</span>
-        </a>
+        </Link>
 
         <nav className="hidden md:flex items-center gap-8">
           {links.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -81,14 +82,14 @@ export default function Navbar() {
           >
             <nav className="flex flex-col gap-4 pt-4">
               {links.map((link) => (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
                   className="text-muted-foreground hover:text-foreground transition-colors"
                   onClick={() => setMenuOpen(false)}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
               <div className="flex flex-col gap-2 pt-2 border-t border-border">
                 <Button variant="ghost">Log in</Button>

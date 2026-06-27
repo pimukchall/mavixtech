@@ -1,12 +1,13 @@
 import { auth, signOut } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { Zap, LayoutDashboard, FolderOpen, Newspaper, LogOut } from "lucide-react";
+import { Zap, LayoutDashboard, FolderOpen, Newspaper, LogOut, MessageSquare } from "lucide-react";
 import Link from "next/link";
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/projects", label: "ผลงาน", icon: FolderOpen },
   { href: "/admin/news", label: "ข่าวสาร", icon: Newspaper },
+  { href: "/admin/contacts", label: "ข้อความ", icon: MessageSquare },
 ];
 
 export default async function AdminLayout({
