@@ -27,9 +27,14 @@ export function MultiImageUpload({
     const form = new FormData();
     form.append("file", file);
     form.append("folder", folder);
-    const res = await fetch("/api/upload", { method: "POST", body: form });
-    const data = await res.json();
-    return data.url ?? null;
+    try {
+      const res = await fetch("/api/upload", { method: "POST", body: form });
+      const data = await res.json();
+      if (!res.ok) return null;
+      return data.url ?? null;
+    } catch {
+      return null;
+    }
   }
 
   async function handleFiles(files: FileList) {
@@ -45,6 +50,8 @@ export function MultiImageUpload({
     setLoadingCount(toUpload.length);
     const results = await Promise.all(toUpload.map(uploadFile));
     const newUrls = results.filter(Boolean) as string[];
+    const failCount = toUpload.length - newUrls.length;
+    if (failCount > 0) setError(`อัปโหลดไม่สำเร็จ ${failCount} รูป กรุณาลองใหม่`);
     setUrls((prev) => [...prev, ...newUrls]);
     setLoadingCount(0);
   }

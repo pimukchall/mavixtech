@@ -28,10 +28,13 @@ export async function POST(req: Request) {
   const base64 = Buffer.from(bytes).toString("base64");
   const dataUri = `data:${file.type};base64,${base64}`;
 
-  const result = await cloudinary.uploader.upload(dataUri, {
-    folder,
-    transformation: [{ width: 1280, crop: "limit", quality: "auto" }],
-  });
-
-  return Response.json({ url: result.secure_url, public_id: result.public_id });
+  try {
+    const result = await cloudinary.uploader.upload(dataUri, {
+      folder,
+      transformation: [{ width: 1280, crop: "limit", quality: "auto" }],
+    });
+    return Response.json({ url: result.secure_url, public_id: result.public_id });
+  } catch {
+    return Response.json({ error: "อัปโหลดไม่สำเร็จ กรุณาลองใหม่" }, { status: 502 });
+  }
 }

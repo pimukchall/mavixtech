@@ -1,8 +1,9 @@
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Plus, Pencil, Trash2 } from "lucide-react";
+import { Plus, Pencil } from "lucide-react";
 import { deleteNews } from "../actions";
+import { DeleteButton } from "@/components/admin/DeleteButton";
 
 export default async function NewsPage() {
   const newsList = await prisma.news.findMany({ orderBy: { createdAt: "desc" } });
@@ -71,15 +72,7 @@ export default async function NewsPage() {
                           <Pencil className="w-3.5 h-3.5" />
                         </Button>
                       </Link>
-                      <form action={deleteNews.bind(null, n.id)}>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="h-7 w-7 p-0 text-red-400 hover:text-red-300 hover:bg-red-400/10"
-                        >
-                          <Trash2 className="w-3.5 h-3.5" />
-                        </Button>
-                      </form>
+                      <DeleteButton action={deleteNews.bind(null, n.id)} label={`ข่าว "${n.title}"`} />
                     </div>
                   </td>
                 </tr>

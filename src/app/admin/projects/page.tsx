@@ -1,8 +1,9 @@
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Plus, Pencil, Trash2 } from "lucide-react";
+import { Plus, Pencil } from "lucide-react";
 import { deleteProject } from "../actions";
+import { DeleteButton } from "@/components/admin/DeleteButton";
 
 export default async function ProjectsPage() {
   const projects = await prisma.project.findMany({ orderBy: { createdAt: "desc" } });
@@ -71,15 +72,7 @@ export default async function ProjectsPage() {
                           <Pencil className="w-3.5 h-3.5" />
                         </Button>
                       </Link>
-                      <form action={deleteProject.bind(null, p.id)}>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="h-7 w-7 p-0 text-red-400 hover:text-red-300 hover:bg-red-400/10"
-                        >
-                          <Trash2 className="w-3.5 h-3.5" />
-                        </Button>
-                      </form>
+                      <DeleteButton action={deleteProject.bind(null, p.id)} label={`ผลงาน "${p.title}"`} />
                     </div>
                   </td>
                 </tr>
