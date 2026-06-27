@@ -6,6 +6,8 @@ services:
       - "3002:3000"
     environment:
       DATABASE_URL: mysql://mavixtech:mavixpass@db:3306/mavixtech
+      AUTH_SECRET: ${NEXTAUTH_SECRET}
+      AUTH_URL: ${NEXTAUTH_URL:-http://localhost:3002}
       NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
       NEXTAUTH_URL: ${NEXTAUTH_URL:-http://localhost:3002}
       AUTH_TRUST_HOST: "1"
