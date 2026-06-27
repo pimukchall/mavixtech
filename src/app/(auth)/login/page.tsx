@@ -4,7 +4,8 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Zap, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
+import Image from "next/image";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -34,10 +35,8 @@ export default function LoginPage() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-primary/10 blur-[120px] pointer-events-none" />
       <Card className="relative w-full max-w-sm border-border bg-card/80 backdrop-blur">
         <CardHeader className="text-center pb-4">
-          <div className="flex justify-center mb-4">
-            <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center">
-              <Zap className="w-6 h-6 text-primary-foreground" />
-            </div>
+          <div className="flex justify-center mb-3">
+            <Image src="/logo_MT_BG.png" alt="Mavixtech" width={96} height={96} className="object-contain rounded-2xl" />
           </div>
           <h1 className="text-2xl font-bold">เข้าสู่ระบบ</h1>
           <p className="text-sm text-muted-foreground">Mavixtech Admin</p>

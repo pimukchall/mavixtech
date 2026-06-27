@@ -1,4 +1,5 @@
-import { Zap, GitFork, X, Link, MapPin, Phone, Mail } from "lucide-react";
+import { GitFork, X, Link, MapPin, Phone, Mail } from "lucide-react";
+import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 
 const links = {
@@ -14,10 +15,8 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-6 gap-8 mb-12">
           <div className="col-span-2">
-            <a href="#" className="flex items-center gap-2 font-bold text-xl mb-4">
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                <Zap className="w-4 h-4 text-primary-foreground" />
-              </div>
+            <a href="/" className="flex items-center gap-2 font-bold text-xl mb-4">
+              <Image src="/Icon_M.png" alt="Mavixtech" width={32} height={32} className="object-contain rounded-lg bg-white p-0.5" />
               <span className="gradient-text">Mavixtech</span>
             </a>
             <p className="text-sm text-muted-foreground max-w-xs leading-relaxed mb-4">

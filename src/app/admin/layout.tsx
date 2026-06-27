@@ -24,7 +24,7 @@ export default async function AdminLayout({
       <aside className="w-60 border-r border-border bg-card/40 flex flex-col shrink-0">
         <div className="px-6 py-5 border-b border-border">
           <Link href="/admin" className="flex items-center gap-2 font-bold text-lg">
-            <Image src="/logo.svg" alt="Mavixtech" width={30} height={30} className="object-contain" />
+            <Image src="/Icon_M.png" alt="Mavixtech" width={30} height={30} className="object-contain rounded-md bg-white p-0.5" />
             <span className="gradient-text">Mavixtech</span>
           </Link>
         </div>
