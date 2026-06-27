@@ -95,9 +95,9 @@ cp .env.example .env
 แก้ไขค่าใน `.env` ตามนี้:
 
 ```env
-DATABASE_URL="mysql://mavixtech:mavixpass@localhost:3306/mavixtech"
+DATABASE_URL="mysql://mavixtech:mavixpass@localhost:3307/mavixtech"
 NEXTAUTH_SECRET="<สร้างใหม่ด้วย: openssl rand -base64 32>"
-NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_URL="http://localhost:3002"
 ```
 
 ### 3. รัน MySQL ด้วย Docker
@@ -107,7 +107,7 @@ NEXTAUTH_URL="http://localhost:3000"
 docker compose up db -d
 ```
 
-> MySQL จะพร้อมที่ `localhost:3306`
+> MySQL จะพร้อมที่ `localhost:3307`
 > - User: `mavixtech`
 > - Password: `mavixpass`
 > - Database: `mavixtech`
@@ -139,7 +139,7 @@ npm run db:seed
 npm run dev
 ```
 
-เปิดเบราว์เซอร์ที่ [http://localhost:3000](http://localhost:3000)
+เปิดเบราว์เซอร์ที่ [http://localhost:3002](http://localhost:3002)
 
 ---
 
@@ -160,9 +160,9 @@ Services ที่จะรัน:
 
 | Service | Port | หน้าที่ |
 |---|---|---|
-| `mavixtech-web` | 3000 | Next.js application |
-| `mavixtech-db` | 3306 | MySQL 8.0 |
-| `mavixtech-pma` | 8080 | phpMyAdmin |
+| `mavixtech-web` | **3002** | Next.js application |
+| `mavixtech-db` | **3307** | MySQL 8.0 |
+| `mavixtech-pma` | **8081** | phpMyAdmin |
 
 ### หลังจาก Docker รัน — Migrate และ Seed
 
@@ -203,12 +203,13 @@ docker compose up -d --build web
    NEXTAUTH_URL="https://mavixtech.co.th"
    NEXTAUTH_SECRET="<random 32+ chars>"
    DATABASE_URL="mysql://mavixtech:mavixpass@db:3306/mavixtech"
+   # หมายเหตุ: ภายใน Docker network ใช้ port 3306 (internal) ไม่ใช่ 3307 (host)
    ```
 4. รัน:
    ```bash
    docker compose up -d --build
    ```
-5. ตั้งค่า Reverse Proxy (Nginx / Caddy) ชี้ port 3000
+5. ตั้งค่า Reverse Proxy (Nginx / Caddy) ชี้ port 3002
 
 #### ตัวอย่าง Nginx config
 
@@ -217,7 +218,7 @@ server {
     server_name mavixtech.co.th www.mavixtech.co.th;
 
     location / {
-        proxy_pass http://localhost:3000;
+        proxy_pass http://localhost:3002;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
@@ -322,7 +323,7 @@ npm run db:studio
 
 | Variable | Required | ค่าตัวอย่าง | หมายเหตุ |
 |---|---|---|---|
-| `DATABASE_URL` | ✅ | `mysql://user:pass@host:3306/db` | Connection string MySQL |
+| `DATABASE_URL` | ✅ | `mysql://user:pass@host:3307/db` | Connection string MySQL (host port) |
 | `NEXTAUTH_SECRET` | ✅ | `WK/oiaMmg7yL2qafWKk...` | สุ่มด้วย `openssl rand -base64 32` |
 | `NEXTAUTH_URL` | ✅ | `https://mavixtech.co.th` | URL หลักของแอป (ไม่มี trailing slash) |
 
@@ -337,7 +338,7 @@ openssl rand -base64 32
 
 ```bash
 # Development
-npm run dev           # รัน dev server (http://localhost:3000)
+npm run dev           # รัน dev server (http://localhost:3002)
 npm run build         # Build production
 npm run start         # รัน production build
 
@@ -359,5 +360,5 @@ npm run lint          # ตรวจสอบ ESLint
 - [ ] เปลี่ยน MySQL password (`MYSQL_ROOT_PASSWORD`, `MYSQL_PASSWORD`) ใน `docker-compose.yml`
 - [ ] เปลี่ยน password admin user หลัง seed
 - [ ] ตั้งค่า HTTPS (SSL certificate)
-- [ ] ตั้งค่า Firewall ปิด port 3306 จาก public
+- [ ] ตั้งค่า Firewall ปิด port 3307 จาก public
 - [ ] ตั้งค่า backup MySQL volume สม่ำเสมอ

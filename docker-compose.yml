@@ -3,11 +3,11 @@ services:
     build: .
     container_name: mavixtech-web
     ports:
-      - "3000:3000"
+      - "3002:3000"
     environment:
       DATABASE_URL: mysql://mavixtech:mavixpass@db:3306/mavixtech
       NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
-      NEXTAUTH_URL: ${NEXTAUTH_URL:-http://localhost:3000}
+      NEXTAUTH_URL: ${NEXTAUTH_URL:-http://localhost:3002}
     depends_on:
       db:
         condition: service_healthy
@@ -22,7 +22,7 @@ services:
       MYSQL_USER: mavixtech
       MYSQL_PASSWORD: mavixpass
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
     healthcheck:
@@ -36,7 +36,7 @@ services:
     image: phpmyadmin:latest
     container_name: mavixtech-pma
     ports:
-      - "8080:80"
+      - "8081:80"
     environment:
       PMA_HOST: db
       PMA_PORT: 3306
