@@ -162,6 +162,7 @@ Services ที่จะรัน:
 |---|---|---|
 | `mavixtech-web` | 3000 | Next.js application |
 | `mavixtech-db` | 3306 | MySQL 8.0 |
+| `mavixtech-pma` | 8080 | phpMyAdmin |
 
 ### หลังจาก Docker รัน — Migrate และ Seed
 
