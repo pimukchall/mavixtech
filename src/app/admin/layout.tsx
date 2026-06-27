@@ -21,8 +21,8 @@ export default async function AdminLayout({
 
   return (
     <div className="min-h-screen flex bg-background">
-      <aside className="w-60 border-r border-border bg-card/40 flex flex-col shrink-0">
-        <div className="px-6 py-5 border-b border-border">
+      <aside className="w-60 border-r border-sidebar-border bg-sidebar flex flex-col shrink-0">
+        <div className="px-6 py-5 border-b border-sidebar-border">
           <Link href="/admin" className="flex items-center gap-2 font-bold text-lg">
             <Image src="/Icon_M.png" alt="Mavixtech" width={30} height={30} className="object-contain rounded-md bg-white p-0.5" />
             <span className="gradient-text">Mavixtech</span>
@@ -33,21 +33,21 @@ export default async function AdminLayout({
             <Link
               key={item.href}
               href={item.href}
-              className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+              className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-sidebar-foreground/60 hover:text-sidebar-foreground hover:bg-sidebar-accent transition-colors"
             >
               <item.icon className="w-4 h-4" />
               {item.label}
             </Link>
           ))}
         </nav>
-        <div className="p-4 border-t border-border">
+        <div className="p-4 border-t border-sidebar-border">
           <div className="flex items-center gap-3 px-3 py-2 mb-2">
-            <div className="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center text-xs font-bold text-primary">
+            <div className="w-7 h-7 rounded-full bg-sidebar-primary/20 flex items-center justify-center text-xs font-bold text-sidebar-primary">
               {session.user?.name?.charAt(0) ?? "A"}
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-xs font-medium truncate">{session.user?.name}</p>
-              <p className="text-xs text-muted-foreground truncate">{session.user?.email}</p>
+              <p className="text-xs font-medium truncate text-sidebar-foreground">{session.user?.name}</p>
+              <p className="text-xs text-sidebar-foreground/50 truncate">{session.user?.email}</p>
             </div>
           </div>
           <form
@@ -57,7 +57,7 @@ export default async function AdminLayout({
               redirect("/login");
             }}
           >
-            <button className="flex items-center gap-2 w-full px-3 py-2 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors">
+            <button className="flex items-center gap-2 w-full px-3 py-2 rounded-lg text-sm text-sidebar-foreground/60 hover:text-sidebar-foreground hover:bg-sidebar-accent transition-colors">
               <LogOut className="w-4 h-4" />
               ออกจากระบบ
             </button>
