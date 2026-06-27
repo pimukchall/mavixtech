@@ -24,7 +24,7 @@ export default function LoginPage() {
     });
     setLoading(false);
     if (res?.error) {
-      setError("อีเมลหรือรหัสผ่านไม่ถูกต้อง");
+      setError("Invalid email or password.");
     } else {
       router.push("/admin");
     }
@@ -38,7 +38,7 @@ export default function LoginPage() {
           <div className="flex justify-center mb-3">
             <Image src="/logo_MT_BG.png" alt="Mavixtech" width={96} height={96} className="object-contain rounded-2xl" />
           </div>
-          <h1 className="text-2xl font-bold">เข้าสู่ระบบ</h1>
+          <h1 className="text-2xl font-bold">Admin Login</h1>
           <p className="text-sm text-muted-foreground">Mavixtech Admin</p>
         </CardHeader>
         <CardContent>
@@ -49,7 +49,7 @@ export default function LoginPage() {
                 name="email"
                 type="email"
                 required
-                placeholder="admin@mavixtech.co.th"
+                placeholder="Email"
                 className="w-full rounded-lg border border-border bg-input px-3 py-2 text-sm outline-none focus:border-primary/60 transition-colors"
               />
             </div>
@@ -72,7 +72,7 @@ export default function LoginPage() {
               disabled={loading}
             >
               {loading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
-              เข้าสู่ระบบ
+              Sign in
             </Button>
           </form>
         </CardContent>

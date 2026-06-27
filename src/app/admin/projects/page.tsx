@@ -12,21 +12,21 @@ export default async function ProjectsPage() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold mb-1">ผลงาน</h1>
-          <p className="text-muted-foreground text-sm">จัดการ portfolio ของบริษัท</p>
+          <h1 className="text-2xl font-bold mb-1">Projects</h1>
+          <p className="text-muted-foreground text-sm">Manage company portfolio</p>
         </div>
         <Link href="/admin/projects/new">
           <Button className="bg-primary hover:bg-primary/90">
-            <Plus className="w-4 h-4 mr-2" /> เพิ่มผลงาน
+            <Plus className="w-4 h-4 mr-2" /> Add Project
           </Button>
         </Link>
       </div>
 
       {projects.length === 0 ? (
         <div className="text-center py-20 text-muted-foreground border border-dashed border-border rounded-xl">
-          <p className="mb-2">ยังไม่มีผลงาน</p>
+          <p className="mb-2">No projects yet</p>
           <Link href="/admin/projects/new" className="text-primary text-sm hover:underline">
-            + เพิ่มผลงานแรก
+            + Add your first project
           </Link>
         </div>
       ) : (
@@ -34,11 +34,11 @@ export default async function ProjectsPage() {
           <table className="w-full text-sm">
             <thead className="bg-secondary/50 border-b border-border">
               <tr>
-                <th className="text-left px-4 py-3 font-medium text-muted-foreground">ชื่อผลงาน</th>
+                <th className="text-left px-4 py-3 font-medium text-muted-foreground">Title</th>
                 <th className="text-left px-4 py-3 font-medium text-muted-foreground">Tags</th>
-                <th className="text-left px-4 py-3 font-medium text-muted-foreground">สถานะ</th>
+                <th className="text-left px-4 py-3 font-medium text-muted-foreground">Status</th>
                 <th className="text-left px-4 py-3 font-medium text-muted-foreground">Featured</th>
-                <th className="text-left px-4 py-3 font-medium text-muted-foreground">วันที่สร้าง</th>
+                <th className="text-left px-4 py-3 font-medium text-muted-foreground">Date</th>
                 <th className="px-4 py-3" />
               </tr>
             </thead>
@@ -58,12 +58,12 @@ export default async function ProjectsPage() {
                           : "bg-muted text-muted-foreground"
                       }`}
                     >
-                      {p.published ? "เผยแพร่" : "ฉบับร่าง"}
+                      {p.published ? "Published" : "Draft"}
                     </span>
                   </td>
                   <td className="px-4 py-3 text-muted-foreground">{p.featured ? "★" : "—"}</td>
                   <td className="px-4 py-3 text-muted-foreground">
-                    {new Date(p.createdAt).toLocaleDateString("th-TH")}
+                    {new Date(p.createdAt).toLocaleDateString("en-US")}
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2 justify-end">
@@ -72,7 +72,7 @@ export default async function ProjectsPage() {
                           <Pencil className="w-3.5 h-3.5" />
                         </Button>
                       </Link>
-                      <DeleteButton action={deleteProject.bind(null, p.id)} label={`ผลงาน "${p.title}"`} />
+                      <DeleteButton action={deleteProject.bind(null, p.id)} label={`"${p.title}"`} />
                     </div>
                   </td>
                 </tr>

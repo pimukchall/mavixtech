@@ -12,21 +12,21 @@ export default async function NewsPage() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold mb-1">ข่าวสาร</h1>
-          <p className="text-muted-foreground text-sm">จัดการข่าวสารและประกาศของบริษัท</p>
+          <h1 className="text-2xl font-bold mb-1">News</h1>
+          <p className="text-muted-foreground text-sm">Manage company news and announcements</p>
         </div>
         <Link href="/admin/news/new">
           <Button className="bg-primary hover:bg-primary/90">
-            <Plus className="w-4 h-4 mr-2" /> เพิ่มข่าวสาร
+            <Plus className="w-4 h-4 mr-2" /> Add News
           </Button>
         </Link>
       </div>
 
       {newsList.length === 0 ? (
         <div className="text-center py-20 text-muted-foreground border border-dashed border-border rounded-xl">
-          <p className="mb-2">ยังไม่มีข่าวสาร</p>
+          <p className="mb-2">No news yet</p>
           <Link href="/admin/news/new" className="text-primary text-sm hover:underline">
-            + เพิ่มข่าวสารแรก
+            + Add your first article
           </Link>
         </div>
       ) : (
@@ -34,10 +34,10 @@ export default async function NewsPage() {
           <table className="w-full text-sm">
             <thead className="bg-secondary/50 border-b border-border">
               <tr>
-                <th className="text-left px-4 py-3 font-medium text-muted-foreground">หัวข้อ</th>
-                <th className="text-left px-4 py-3 font-medium text-muted-foreground">สถานะ</th>
-                <th className="text-left px-4 py-3 font-medium text-muted-foreground">วันที่เผยแพร่</th>
-                <th className="text-left px-4 py-3 font-medium text-muted-foreground">วันที่สร้าง</th>
+                <th className="text-left px-4 py-3 font-medium text-muted-foreground">Title</th>
+                <th className="text-left px-4 py-3 font-medium text-muted-foreground">Status</th>
+                <th className="text-left px-4 py-3 font-medium text-muted-foreground">Published</th>
+                <th className="text-left px-4 py-3 font-medium text-muted-foreground">Created</th>
                 <th className="px-4 py-3" />
               </tr>
             </thead>
@@ -56,14 +56,14 @@ export default async function NewsPage() {
                           : "bg-muted text-muted-foreground"
                       }`}
                     >
-                      {n.published ? "เผยแพร่" : "ฉบับร่าง"}
+                      {n.published ? "Published" : "Draft"}
                     </span>
                   </td>
                   <td className="px-4 py-3 text-muted-foreground">
-                    {n.publishedAt ? new Date(n.publishedAt).toLocaleDateString("th-TH") : "—"}
+                    {n.publishedAt ? new Date(n.publishedAt).toLocaleDateString("en-US") : "—"}
                   </td>
                   <td className="px-4 py-3 text-muted-foreground">
-                    {new Date(n.createdAt).toLocaleDateString("th-TH")}
+                    {new Date(n.createdAt).toLocaleDateString("en-US")}
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2 justify-end">
@@ -72,7 +72,7 @@ export default async function NewsPage() {
                           <Pencil className="w-3.5 h-3.5" />
                         </Button>
                       </Link>
-                      <DeleteButton action={deleteNews.bind(null, n.id)} label={`ข่าว "${n.title}"`} />
+                      <DeleteButton action={deleteNews.bind(null, n.id)} label={`"${n.title}"`} />
                     </div>
                   </td>
                 </tr>

@@ -61,8 +61,8 @@ export default async function ProjectsPage() {
                     key={project.id}
                     className="group rounded-2xl border border-border bg-card/60 hover:bg-card hover:border-primary/30 overflow-hidden transition-all duration-300"
                   >
-                    {/* Image */}
-                    <div className="relative h-52 overflow-hidden">
+                    {/* Image — clickable */}
+                    <Link href={`/projects/${project.id}`} className="block relative h-52 overflow-hidden">
                       {project.imageUrl ? (
                         // eslint-disable-next-line @next/next/no-img-element
                         <img
@@ -80,11 +80,13 @@ export default async function ProjectsPage() {
                           <Badge className="bg-primary text-primary-foreground text-xs">Featured</Badge>
                         </div>
                       )}
-                    </div>
+                    </Link>
 
                     {/* Content */}
                     <div className="p-5">
-                      <h3 className="font-semibold text-lg mb-2 line-clamp-1">{project.title}</h3>
+                      <Link href={`/projects/${project.id}`}>
+                        <h3 className="font-semibold text-lg mb-2 line-clamp-1 hover:text-primary transition-colors">{project.title}</h3>
+                      </Link>
                       <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 mb-4">
                         {project.description}
                       </p>

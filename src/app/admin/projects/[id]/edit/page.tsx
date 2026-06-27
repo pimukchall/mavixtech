@@ -25,14 +25,14 @@ export default async function EditProjectPage({
           <ArrowLeft className="w-4 h-4" />
         </Link>
         <div>
-          <h1 className="text-2xl font-bold mb-0.5">แก้ไขผลงาน</h1>
+          <h1 className="text-2xl font-bold mb-0.5">Edit Project</h1>
           <p className="text-sm text-muted-foreground">{project.title}</p>
         </div>
       </div>
       <form action={action} className="space-y-5">
-        <FormField label="ชื่อผลงาน" name="title" required defaultValue={project.title} />
+        <FormField label="Project Title" name="title" required defaultValue={project.title} />
         <FormField
-          label="รายละเอียด"
+          label="Description"
           name="description"
           required
           textarea
@@ -41,7 +41,7 @@ export default async function EditProjectPage({
         <MultiImageUpload
           name="images"
           folder="mavixtech/projects"
-          label="รูปภาพผลงาน"
+          label="Project Images"
           max={10}
           defaultValue={project.images ? JSON.parse(project.images) : project.imageUrl ? [project.imageUrl] : []}
         />
@@ -49,30 +49,30 @@ export default async function EditProjectPage({
           label="Tags"
           name="tags"
           defaultValue={project.tags ?? ""}
-          placeholder="เช่น Web, Mobile, AI"
+          placeholder="e.g. Web, Mobile, AI"
         />
-        <FormField label="URL ผลงาน" name="url" defaultValue={project.url ?? ""} />
+        <FormField label="Project URL" name="url" defaultValue={project.url ?? ""} />
         <div className="flex gap-6 pt-2">
           <FormCheckbox
-            label="เผยแพร่"
+            label="Publish"
             name="published"
             defaultChecked={project.published}
-            description="แสดงบน landing page"
+            description="Show on the public website"
           />
           <FormCheckbox
             label="Featured"
             name="featured"
             defaultChecked={project.featured}
-            description="แสดงในส่วน highlight"
+            description="Highlight in featured section"
           />
         </div>
         <div className="flex gap-3 pt-2">
           <Button type="submit" className="bg-primary hover:bg-primary/90">
-            บันทึกการเปลี่ยนแปลง
+            Save Changes
           </Button>
           <Link href="/admin/projects">
             <Button type="button" variant="outline">
-              ยกเลิก
+              Cancel
             </Button>
           </Link>
         </div>
