@@ -1,14 +1,14 @@
 import { auth, signOut } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { LayoutDashboard, FolderOpen, Newspaper, LogOut, MessageSquare } from "lucide-react";
+import { LayoutDashboard, FolderOpen, Newspaper, LogOut, MessageSquare, Globe } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/admin/projects", label: "ผลงาน", icon: FolderOpen },
-  { href: "/admin/news", label: "ข่าวสาร", icon: Newspaper },
-  { href: "/admin/contacts", label: "ข้อความ", icon: MessageSquare },
+  { href: "/admin/projects", label: "Projects", icon: FolderOpen },
+  { href: "/admin/news", label: "News", icon: Newspaper },
+  { href: "/admin/contacts", label: "Contacts", icon: MessageSquare },
 ];
 
 export default async function AdminLayout({
@@ -39,6 +39,13 @@ export default async function AdminLayout({
               {item.label}
             </Link>
           ))}
+          <Link
+            href="/"
+            className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-sidebar-foreground/60 hover:text-sidebar-foreground hover:bg-sidebar-accent transition-colors mt-2"
+          >
+            <Globe className="w-4 h-4" />
+            View Website
+          </Link>
         </nav>
         <div className="p-4 border-t border-sidebar-border">
           <div className="flex items-center gap-3 px-3 py-2 mb-2">
@@ -59,7 +66,7 @@ export default async function AdminLayout({
           >
             <button className="flex items-center gap-2 w-full px-3 py-2 rounded-lg text-sm text-sidebar-foreground/60 hover:text-sidebar-foreground hover:bg-sidebar-accent transition-colors">
               <LogOut className="w-4 h-4" />
-              ออกจากระบบ
+              Log out
             </button>
           </form>
         </div>

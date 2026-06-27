@@ -25,14 +25,14 @@ export default async function EditNewsPage({
           <ArrowLeft className="w-4 h-4" />
         </Link>
         <div>
-          <h1 className="text-2xl font-bold mb-0.5">แก้ไขข่าวสาร</h1>
+          <h1 className="text-2xl font-bold mb-0.5">Edit Article</h1>
           <p className="text-sm text-muted-foreground">{news.title}</p>
         </div>
       </div>
       <form action={action} className="space-y-5">
-        <FormField label="หัวข้อ" name="title" required defaultValue={news.title} />
+        <FormField label="Title" name="title" required defaultValue={news.title} />
         <FormField
-          label="เนื้อหา"
+          label="Content"
           name="content"
           required
           textarea
@@ -41,25 +41,25 @@ export default async function EditNewsPage({
         <MultiImageUpload
           name="images"
           folder="mavixtech/news"
-          label="รูปภาพ"
+          label="Images"
           max={5}
           defaultValue={news.images ? JSON.parse(news.images) : news.imageUrl ? [news.imageUrl] : []}
         />
         <div className="pt-2">
           <FormCheckbox
-            label="เผยแพร่"
+            label="Publish"
             name="published"
             defaultChecked={news.published}
-            description="แสดงบน landing page"
+            description="Show on the public website"
           />
         </div>
         <div className="flex gap-3 pt-2">
           <Button type="submit" className="bg-primary hover:bg-primary/90">
-            บันทึกการเปลี่ยนแปลง
+            Save Changes
           </Button>
           <Link href="/admin/news">
             <Button type="button" variant="outline">
-              ยกเลิก
+              Cancel
             </Button>
           </Link>
         </div>

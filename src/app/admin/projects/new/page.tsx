@@ -13,51 +13,51 @@ export default function NewProjectPage() {
           <ArrowLeft className="w-4 h-4" />
         </Link>
         <div>
-          <h1 className="text-2xl font-bold mb-0.5">เพิ่มผลงานใหม่</h1>
-          <p className="text-sm text-muted-foreground">กรอกข้อมูลผลงานของบริษัท</p>
+          <h1 className="text-2xl font-bold mb-0.5">Add New Project</h1>
+          <p className="text-sm text-muted-foreground">Fill in the project details</p>
         </div>
       </div>
       <form action={createProject} className="space-y-5">
         <FormField
-          label="ชื่อผลงาน"
+          label="Project Title"
           name="title"
           required
-          placeholder="เช่น Website E-Commerce"
+          placeholder="e.g. Hotel Management System"
         />
         <FormField
-          label="รายละเอียด"
+          label="Description"
           name="description"
           required
           textarea
-          placeholder="อธิบายผลงานโดยย่อ..."
+          placeholder="Brief description of the project..."
         />
-        <MultiImageUpload name="images" folder="mavixtech/projects" label="รูปภาพผลงาน" max={10} />
+        <MultiImageUpload name="images" folder="mavixtech/projects" label="Project Images" max={10} />
         <FormField
           label="Tags"
           name="tags"
-          placeholder="เช่น Web, Mobile, AI (คั่นด้วย comma)"
+          placeholder="e.g. Web, Mobile, AI (comma separated)"
         />
-        <FormField label="URL ผลงาน" name="url" placeholder="https://..." />
+        <FormField label="Project URL" name="url" placeholder="https://..." />
         <div className="flex gap-6 pt-2">
           <FormCheckbox
-            label="เผยแพร่"
+            label="Publish"
             name="published"
             defaultChecked={true}
-            description="แสดงบน landing page"
+            description="Show on the public website"
           />
           <FormCheckbox
             label="Featured"
             name="featured"
-            description="แสดงในส่วน highlight"
+            description="Highlight in featured section"
           />
         </div>
         <div className="flex gap-3 pt-2">
           <Button type="submit" className="bg-primary hover:bg-primary/90">
-            บันทึก
+            Save
           </Button>
           <Link href="/admin/projects">
             <Button type="button" variant="outline">
-              ยกเลิก
+              Cancel
             </Button>
           </Link>
         </div>

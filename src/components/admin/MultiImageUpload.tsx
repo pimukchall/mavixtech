@@ -15,7 +15,7 @@ export function MultiImageUpload({
   name,
   defaultValue = [],
   folder = "mavixtech",
-  label = "รูปภาพ",
+  label = "Images",
   max = 10,
 }: MultiImageUploadProps) {
   const [urls, setUrls] = useState<string[]>(defaultValue);
@@ -42,7 +42,7 @@ export function MultiImageUpload({
     const toUpload = Array.from(files).slice(0, remaining);
 
     if (files.length > remaining) {
-      setError(`อัปโหลดได้อีกแค่ ${remaining} รูป (สูงสุด ${max} รูป)`);
+      setError(`Only ${remaining} more image${remaining !== 1 ? "s" : ""} allowed (max ${max})`);
     } else {
       setError("");
     }
@@ -51,7 +51,7 @@ export function MultiImageUpload({
     const results = await Promise.all(toUpload.map(uploadFile));
     const newUrls = results.filter(Boolean) as string[];
     const failCount = toUpload.length - newUrls.length;
-    if (failCount > 0) setError(`อัปโหลดไม่สำเร็จ ${failCount} รูป กรุณาลองใหม่`);
+    if (failCount > 0) setError(`${failCount} image${failCount !== 1 ? "s" : ""} failed to upload. Please try again.`);
     setUrls((prev) => [...prev, ...newUrls]);
     setLoadingCount(0);
   }
@@ -69,7 +69,7 @@ export function MultiImageUpload({
         <label className="text-sm font-medium">{label}</label>
         {urls.length > 0 && (
           <span className="text-xs text-muted-foreground">
-            {urls.length}/{max} รูป · รูปแรกเป็นรูปปก
+            {urls.length}/{max} images · First image is the cover
           </span>
         )}
       </div>
@@ -94,7 +94,7 @@ export function MultiImageUpload({
               {/* Cover badge */}
               {i === 0 && (
                 <span className="absolute bottom-1 left-1 text-xs bg-primary/90 text-white px-1.5 py-0.5 rounded">
-                  ปก
+                  Cover
                 </span>
               )}
               {/* Remove button */}
@@ -127,7 +127,7 @@ export function MultiImageUpload({
               className="aspect-video rounded-lg border-2 border-dashed border-border hover:border-primary/50 hover:bg-secondary/40 flex flex-col items-center justify-center gap-1 text-muted-foreground hover:text-foreground transition-colors"
             >
               <Plus className="w-5 h-5" />
-              <span className="text-xs">เพิ่มรูป</span>
+              <span className="text-xs">Add image</span>
             </button>
           )}
         </div>
@@ -152,17 +152,17 @@ export function MultiImageUpload({
             <>
               <Loader2 className="w-8 h-8 text-primary animate-spin" />
               <p className="text-sm text-muted-foreground">
-                กำลังอัปโหลด {loadingCount} รูป...
+                Uploading {loadingCount} image{loadingCount !== 1 ? "s" : ""}...
               </p>
             </>
           ) : (
             <>
               <ImageIcon className="w-8 h-8 text-muted-foreground" />
               <p className="text-sm text-muted-foreground">
-                คลิกหรือลากรูปมาวาง (เลือกหลายรูปพร้อมกันได้)
+                Click or drag images here (multiple allowed)
               </p>
               <p className="text-xs text-muted-foreground/60">
-                JPG, PNG, WEBP · สูงสุด 5MB/รูป · สูงสุด {max} รูป
+                JPG, PNG, WEBP · Max 5MB each · Up to {max} images
               </p>
             </>
           )}

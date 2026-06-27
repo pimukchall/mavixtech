@@ -24,28 +24,28 @@ export default async function AdminDashboard() {
 
   const stats = [
     {
-      label: "ผลงานทั้งหมด",
+      label: "Total Projects",
       value: totalProjects,
-      sub: `${publishedProjects} เผยแพร่แล้ว`,
+      sub: `${publishedProjects} published`,
       icon: FolderOpen,
       color: "text-primary",
     },
     {
-      label: "ผลงานแนะนำ",
+      label: "Featured Projects",
       value: featuredProjects,
-      sub: "Featured projects",
+      sub: "Highlighted on site",
       icon: Star,
       color: "text-yellow-400",
     },
     {
-      label: "ข่าวสารทั้งหมด",
+      label: "Total News",
       value: totalNews,
-      sub: `${publishedNews} เผยแพร่แล้ว`,
+      sub: `${publishedNews} published`,
       icon: Newspaper,
       color: "text-accent",
     },
     {
-      label: "เผยแพร่แล้ว",
+      label: "Published",
       value: publishedProjects + publishedNews,
       sub: "Projects + News",
       icon: Eye,
@@ -57,7 +57,7 @@ export default async function AdminDashboard() {
     <div>
       <div className="mb-8">
         <h1 className="text-2xl font-bold mb-1">Dashboard</h1>
-        <p className="text-muted-foreground text-sm">ภาพรวมระบบ Mavixtech</p>
+        <p className="text-muted-foreground text-sm">Mavixtech system overview</p>
       </div>
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
@@ -79,13 +79,13 @@ export default async function AdminDashboard() {
         <Card className="border-border bg-card/60">
           <CardContent className="p-5">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="font-semibold">ผลงานล่าสุด</h2>
+              <h2 className="font-semibold">Recent Projects</h2>
               <Link href="/admin/projects/new" className="text-xs text-primary hover:underline">
-                + เพิ่มใหม่
+                + Add New
               </Link>
             </div>
             {recentProjects.length === 0 ? (
-              <p className="text-sm text-muted-foreground text-center py-6">ยังไม่มีผลงาน</p>
+              <p className="text-sm text-muted-foreground text-center py-6">No projects yet</p>
             ) : (
               <ul className="space-y-2">
                 {recentProjects.map((p) => (
@@ -96,7 +96,7 @@ export default async function AdminDashboard() {
                     <div>
                       <p className="text-sm font-medium">{p.title}</p>
                       <p className="text-xs text-muted-foreground">
-                        {new Date(p.createdAt).toLocaleDateString("th-TH")}
+                        {new Date(p.createdAt).toLocaleDateString("en-US")}
                       </p>
                     </div>
                     <span
@@ -106,7 +106,7 @@ export default async function AdminDashboard() {
                           : "bg-muted text-muted-foreground"
                       }`}
                     >
-                      {p.published ? "เผยแพร่" : "ฉบับร่าง"}
+                      {p.published ? "Published" : "Draft"}
                     </span>
                   </li>
                 ))}
@@ -118,13 +118,13 @@ export default async function AdminDashboard() {
         <Card className="border-border bg-card/60">
           <CardContent className="p-5">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="font-semibold">ข่าวสารล่าสุด</h2>
+              <h2 className="font-semibold">Recent News</h2>
               <Link href="/admin/news/new" className="text-xs text-primary hover:underline">
-                + เพิ่มใหม่
+                + Add New
               </Link>
             </div>
             {recentNews.length === 0 ? (
-              <p className="text-sm text-muted-foreground text-center py-6">ยังไม่มีข่าวสาร</p>
+              <p className="text-sm text-muted-foreground text-center py-6">No news yet</p>
             ) : (
               <ul className="space-y-2">
                 {recentNews.map((n) => (
@@ -135,7 +135,7 @@ export default async function AdminDashboard() {
                     <div>
                       <p className="text-sm font-medium">{n.title}</p>
                       <p className="text-xs text-muted-foreground">
-                        {new Date(n.createdAt).toLocaleDateString("th-TH")}
+                        {new Date(n.createdAt).toLocaleDateString("en-US")}
                       </p>
                     </div>
                     <span
@@ -145,7 +145,7 @@ export default async function AdminDashboard() {
                           : "bg-muted text-muted-foreground"
                       }`}
                     >
-                      {n.published ? "เผยแพร่" : "ฉบับร่าง"}
+                      {n.published ? "Published" : "Draft"}
                     </span>
                   </li>
                 ))}

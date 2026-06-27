@@ -8,12 +8,12 @@ interface DeleteButtonProps {
   label?: string;
 }
 
-export function DeleteButton({ action, label = "รายการนี้" }: DeleteButtonProps) {
+export function DeleteButton({ action, label = "this item" }: DeleteButtonProps) {
   return (
     <form
       action={action}
       onSubmit={(e) => {
-        if (!confirm(`ยืนยันการลบ${label}? ไม่สามารถกู้คืนได้`)) {
+        if (!confirm(`Delete ${label}? This cannot be undone.`)) {
           e.preventDefault();
         }
       }}
