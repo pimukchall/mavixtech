@@ -2,7 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import { updateNews } from "../../../actions";
 import { FormField, FormCheckbox } from "@/components/admin/AdminFormField";
-import { ImageUpload } from "@/components/admin/ImageUpload";
+import { MultiImageUpload } from "@/components/admin/MultiImageUpload";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
@@ -38,7 +38,13 @@ export default async function EditNewsPage({
           textarea
           defaultValue={news.content}
         />
-        <ImageUpload name="imageUrl" folder="mavixtech/news" label="รูปภาพปก" defaultValue={news.imageUrl ?? ""} />
+        <MultiImageUpload
+          name="images"
+          folder="mavixtech/news"
+          label="รูปภาพ"
+          max={5}
+          defaultValue={news.images ? JSON.parse(news.images) : news.imageUrl ? [news.imageUrl] : []}
+        />
         <div className="pt-2">
           <FormCheckbox
             label="เผยแพร่"

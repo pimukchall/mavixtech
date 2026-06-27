@@ -9,14 +9,25 @@ async function requireAdmin() {
   if (!session) redirect("/login");
 }
 
+function parseImages(formData: FormData, field = "images"): { imageUrl: string | null; images: string | null } {
+  const raw = (formData.get(field) as string) || "[]";
+  const arr: string[] = JSON.parse(raw);
+  return {
+    imageUrl: arr[0] ?? null,
+    images: arr.length > 0 ? raw : null,
+  };
+}
+
 // --- Projects ---
 export async function createProject(formData: FormData) {
   await requireAdmin();
+  const { imageUrl, images } = parseImages(formData);
   await prisma.project.create({
     data: {
       title: formData.get("title") as string,
       description: formData.get("description") as string,
-      imageUrl: (formData.get("imageUrl") as string) || null,
+      imageUrl,
+      images,
       tags: (formData.get("tags") as string) || null,
       url: (formData.get("url") as string) || null,
       featured: formData.get("featured") === "on",
@@ -29,12 +40,14 @@ export async function createProject(formData: FormData) {
 
 export async function updateProject(id: string, formData: FormData) {
   await requireAdmin();
+  const { imageUrl, images } = parseImages(formData);
   await prisma.project.update({
     where: { id },
     data: {
       title: formData.get("title") as string,
       description: formData.get("description") as string,
-      imageUrl: (formData.get("imageUrl") as string) || null,
+      imageUrl,
+      images,
       tags: (formData.get("tags") as string) || null,
       url: (formData.get("url") as string) || null,
       featured: formData.get("featured") === "on",
@@ -55,11 +68,13 @@ export async function deleteProject(id: string) {
 export async function createNews(formData: FormData) {
   await requireAdmin();
   const published = formData.get("published") === "on";
+  const { imageUrl, images } = parseImages(formData);
   await prisma.news.create({
     data: {
       title: formData.get("title") as string,
       content: formData.get("content") as string,
-      imageUrl: (formData.get("imageUrl") as string) || null,
+      imageUrl,
+      images,
       published,
       publishedAt: published ? new Date() : null,
     },
@@ -71,12 +86,14 @@ export async function createNews(formData: FormData) {
 export async function updateNews(id: string, formData: FormData) {
   await requireAdmin();
   const published = formData.get("published") === "on";
+  const { imageUrl, images } = parseImages(formData);
   await prisma.news.update({
     where: { id },
     data: {
       title: formData.get("title") as string,
       content: formData.get("content") as string,
-      imageUrl: (formData.get("imageUrl") as string) || null,
+      imageUrl,
+      images,
       published,
       publishedAt: published ? new Date() : null,
     },

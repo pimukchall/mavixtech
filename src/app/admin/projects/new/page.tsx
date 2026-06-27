@@ -1,6 +1,6 @@
 import { createProject } from "../../actions";
 import { FormField, FormCheckbox } from "@/components/admin/AdminFormField";
-import { ImageUpload } from "@/components/admin/ImageUpload";
+import { MultiImageUpload } from "@/components/admin/MultiImageUpload";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
@@ -31,7 +31,7 @@ export default function NewProjectPage() {
           textarea
           placeholder="อธิบายผลงานโดยย่อ..."
         />
-        <ImageUpload name="imageUrl" folder="mavixtech/projects" label="รูปภาพผลงาน" />
+        <MultiImageUpload name="images" folder="mavixtech/projects" label="รูปภาพผลงาน" max={10} />
         <FormField
           label="Tags"
           name="tags"
