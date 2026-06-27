@@ -88,11 +88,11 @@ function CapabilityCard({ icon: Icon, label, desc, delay }: {
 
 // ─── Client logo card ─────────────────────────────────────────
 const clients = [
-  { src: "/Acara-2.jpg", name: "ACARA", sub: "Hotel & Hospitality" },
   { src: "/EMP-1-150x150.jpg", name: "Emperor", sub: "Enterprise" },
+  { src: "/Acara-2.jpg", name: "ACARA", sub: "Hotel & Hospitality" },
+  { src: "/LeoAngelo-150x150.jpg", name: "LeoAngelo", sub: "Hotel & Hospitality" },
   { src: "/Sheraton-Samui-1-150x150.jpg", name: "Sheraton Samui", sub: "International Hotel" },
   { src: "/VanaBelle-Samui-1-150x150.jpg", name: "VanaBelle Samui", sub: "Luxury Resort" },
-  { src: "/LeoAngelo-150x150.jpg", name: "LeoAngelo", sub: "Hotel & Hospitality" },
 ];
 
 function ClientCard({ src, name, sub, delay }: {
