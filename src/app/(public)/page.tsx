@@ -112,7 +112,6 @@ function ClientCard({ src, name, sub, delay }: {
         <Image src={src} alt={name} width={96} height={96} className="object-contain w-full h-full" />
       </div>
       <p className="font-bold text-sm">{name}</p>
-      <p className="text-xs text-muted-foreground">{sub}</p>
     </motion.div>
   );
 }
