@@ -1,12 +1,10 @@
-import { auth } from "@/lib/auth";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-export default async function PublicLayout({ children }: { children: React.ReactNode }) {
-  const session = await auth();
+export default function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <Navbar isAdmin={!!session} />
+      <Navbar />
       {children}
       <Footer />
     </>

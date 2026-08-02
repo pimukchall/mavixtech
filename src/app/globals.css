@@ -144,8 +144,5 @@
 }
 
 .grid-bg {
-  background-image:
-    linear-gradient(oklch(0.75 0.03 265 / 0.5) 1px, transparent 1px),
-    linear-gradient(90deg, oklch(0.75 0.03 265 / 0.5) 1px, transparent 1px);
-  background-size: 60px 60px;
+  /* network bg is rendered via canvas component */
 }
