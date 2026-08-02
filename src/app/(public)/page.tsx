@@ -11,6 +11,7 @@ import {
   Utensils,
 } from "lucide-react";
 import Link from "next/link";
+import NetworkBg from "@/components/NetworkBg";
 import Image from "next/image";
 
 const fadeUp: Variants = {
@@ -27,7 +28,7 @@ const services = [
   {
     icon: MonitorSmartphone,
     title: "POS & Hospitality System",
-    desc: "Your guests deserve the best — and so does your business. Our POS & Hospitality Solutions keep your hotel running smarter, faster, and better.",
+    desc: "Comprehensive POS and hospitality solutions tailored for hotels, restaurants, and resorts.",
   },
   {
     icon: Network,
@@ -202,9 +203,9 @@ function TransformSection() {
 
         <div className="grid grid-cols-2 gap-4">
           <CapabilityCard icon={Network} label="Network & Security" desc="Enterprise-grade protection" delay={0} />
-          <CapabilityCard icon={MonitorSmartphone} label="POS & Hospitality" desc="Hotel & restaurant systems" delay={0.1} />
-          <CapabilityCard icon={Building2} label="Cloud & Server" desc="Scalable infrastructure" delay={0.2} />
-          <CapabilityCard icon={Utensils} label="PBX & Communication" desc="Unified communication" delay={0.3} />
+          <CapabilityCard icon={MonitorSmartphone} label="POS & Hospitality System" desc="Hotel & restaurant systems" delay={0.1} />
+          <CapabilityCard icon={Building2} label="Server & Backup Management" desc="Scalable infrastructure" delay={0.2} />
+          <CapabilityCard icon={Utensils} label="PBX & Communication System" desc="Unified communication" delay={0.3} />
         </div>
       </div>
     </section>
@@ -256,6 +257,7 @@ export default function Home() {
     <main>
       {/* Hero */}
       <section className="relative min-h-screen flex flex-col items-center justify-center pt-16 overflow-hidden grid-bg">
+        <NetworkBg />
         <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/0 to-background pointer-events-none" />
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/8 blur-[120px] pointer-events-none" />
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center" ref={heroRef}>

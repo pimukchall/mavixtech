@@ -11,11 +11,10 @@ const links = [
   { label: "About Us", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Projects", href: "/projects" },
-  { label: "News", href: "/news" },
   { label: "Contact", href: "/contact" },
 ];
 
-export default function Navbar({ isAdmin }: { isAdmin?: boolean }) {
+export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -38,7 +37,7 @@ export default function Navbar({ isAdmin }: { isAdmin?: boolean }) {
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 font-bold text-xl">
-          <Image src="/Icon_M.png" alt="Mavixtech" width={36} height={36} className="object-contain rounded-lg bg-white p-0.5" />
+          <Image src="/logo_MT_BG.png" alt="Mavixtech" width={120} height={120} className="object-contain h-10 w-auto" />
           <span className="gradient-text">Mavixtech</span>
         </Link>
 
@@ -55,20 +54,9 @@ export default function Navbar({ isAdmin }: { isAdmin?: boolean }) {
         </nav>
 
         <div className="hidden md:flex items-center gap-3">
-          {isAdmin ? (
-            <Link href="/admin">
-              <Button size="sm" className="bg-primary hover:bg-primary/90">Dashboard</Button>
-            </Link>
-          ) : (
-            <>
-              <Link href="/login">
-                <Button variant="ghost" size="sm">Log in</Button>
-              </Link>
-              <Link href="/contact">
-                <Button size="sm" className="bg-primary hover:bg-primary/90">Get Started</Button>
-              </Link>
-            </>
-          )}
+          <Link href="/contact">
+            <Button size="sm" className="bg-primary hover:bg-primary/90">Get Started</Button>
+          </Link>
         </div>
 
         <button
@@ -99,21 +87,10 @@ export default function Navbar({ isAdmin }: { isAdmin?: boolean }) {
                   {link.label}
                 </Link>
               ))}
-              <div className="flex flex-col gap-2 pt-2 border-t border-border">
-                {isAdmin ? (
-                  <Link href="/admin" onClick={() => setMenuOpen(false)}>
-                    <Button className="bg-primary hover:bg-primary/90 w-full">Dashboard</Button>
-                  </Link>
-                ) : (
-                  <>
-                    <Link href="/login" onClick={() => setMenuOpen(false)}>
-                      <Button variant="ghost" className="w-full">Log in</Button>
-                    </Link>
-                    <Link href="/contact" onClick={() => setMenuOpen(false)}>
-                      <Button className="bg-primary hover:bg-primary/90 w-full">Get Started</Button>
-                    </Link>
-                  </>
-                )}
+              <div className="pt-2 border-t border-border">
+                <Link href="/contact" onClick={() => setMenuOpen(false)}>
+                  <Button className="bg-primary hover:bg-primary/90 w-full">Get Started</Button>
+                </Link>
               </div>
             </nav>
           </motion.div>

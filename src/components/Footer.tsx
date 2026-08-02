@@ -1,7 +1,12 @@
-import { GitFork, X, Link as LinkIcon, MapPin, Phone, Mail } from "lucide-react";
+"use client";
+
+import { MapPin, Phone, Mail, Globe } from "lucide-react";
 import Image from "next/image";
 import NextLink from "next/link";
 import { Separator } from "@/components/ui/separator";
+import { QRCodeSVG } from "qrcode.react";
+
+const LINE_URL = "https://line.me/R/ti/p/@366pklzy";
 
 export default function Footer() {
   return (
@@ -9,13 +14,17 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto">
         <div className="mb-12">
           <NextLink href="/" className="flex items-center gap-2 font-bold text-xl mb-4">
-            <Image src="/Icon_M.png" alt="Mavixtech" width={32} height={32} className="object-contain rounded-lg bg-white p-0.5" />
+            <Image src="/logo_MT_BG.png" alt="Mavixtech" width={140} height={140} className="object-contain h-12 w-auto" />
             <span className="gradient-text">Mavixtech</span>
           </NextLink>
           <ul className="space-y-2 mb-6">
             <li className="flex items-start gap-2 text-sm text-muted-foreground">
               <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-primary" />
               <span>199/106, Moo 11, Bang Bua Thong, Nonthaburi 11110, Thailand</span>
+            </li>
+            <li className="flex items-start gap-2 text-sm text-muted-foreground">
+              <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-primary" />
+              <span>Service Center — Samui: 28/252 Moo 1, Mae Nam, Koh Samui, Surat Thani 84330, Thailand</span>
             </li>
             <li className="flex items-center gap-2 text-sm text-muted-foreground">
               <Phone className="w-4 h-4 shrink-0 text-primary" />
@@ -25,18 +34,20 @@ export default function Footer() {
               <Mail className="w-4 h-4 shrink-0 text-primary" />
               <a href="mailto:support@mavixtech.co.th" className="hover:text-foreground transition-colors">support@mavixtech.co.th</a>
             </li>
+            <li className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Globe className="w-4 h-4 shrink-0 text-primary" />
+              <a href="https://www.mavixtech.co.th" className="hover:text-foreground transition-colors">www.mavixtech.co.th</a>
+            </li>
           </ul>
-          <div className="flex gap-4">
-            {[GitFork, X, LinkIcon].map((Icon, i) => (
-              <a
-                key={i}
-                href="#"
-                className="w-8 h-8 rounded-lg border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors"
-              >
-                <Icon className="w-4 h-4" />
-              </a>
-            ))}
-          </div>
+          <a href={LINE_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 w-fit group">
+            <div className="p-1.5 bg-white rounded-lg border border-border group-hover:border-[#06C755]/40 transition-colors">
+              <QRCodeSVG value={LINE_URL} size={56} fgColor="#06C755" bgColor="#ffffff" level="M" />
+            </div>
+            <div>
+              <p className="text-xs font-medium text-foreground">LINE Official</p>
+              <p className="text-xs text-muted-foreground">Scan to chat with us</p>
+            </div>
+          </a>
         </div>
 
         <Separator className="mb-8" />

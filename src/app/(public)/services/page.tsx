@@ -10,40 +10,37 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import Link from "next/link";
+import NetworkBg from "@/components/NetworkBg";
 import { Button } from "@/components/ui/button";
 
 const services = [
   {
     icon: Shield,
     title: "Network & Security",
-    description: "Protect your business with enterprise-grade network and security solutions.",
-    color: "text-blue-500",
-    bg: "from-blue-50 to-blue-100",
+    description: "Designing and implementing secure, reliable, and scalable network infrastructures.",
     iconBg: "bg-blue-500",
+    image: "/services/network.jpg",
   },
   {
     icon: Server,
-    title: "Cloud & Server Management",
-    description: "Empower your business with secure, scalable, and high-performance cloud and server solutions.",
-    color: "text-primary",
-    bg: "from-primary/5 to-primary/15",
+    title: "Server & Backup Management",
+    description: "Ensuring business continuity through proactive server management and data protection solutions.",
     iconBg: "bg-primary",
+    image: "/services/server.jpg",
   },
   {
     icon: MonitorSmartphone,
     title: "POS & Hospitality System",
-    description: "Deliver seamless guest experiences with our advanced POS and hospitality solutions.",
-    color: "text-green-600",
-    bg: "from-green-50 to-green-100",
+    description: "Comprehensive POS and hospitality solutions tailored for hotels, restaurants, and resorts.",
     iconBg: "bg-green-600",
+    image: "/services/hospitality.jpg",
   },
   {
     icon: Phone,
     title: "PBX & Communication System",
-    description: "Enhance business communication with our secure and reliable PBX solutions.",
-    color: "text-yellow-600",
-    bg: "from-yellow-50 to-yellow-100",
+    description: "Advanced business telephony and unified communications solutions for modern enterprises.",
     iconBg: "bg-yellow-500",
+    image: "/services/pbx.jpg",
   },
 ];
 
@@ -66,12 +63,21 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: (index % 2) * 0.15, duration: 0.5 }}
-      className="rounded-2xl border border-border bg-card overflow-hidden hover:shadow-md hover:border-primary/20 transition-all duration-300"
+      className="rounded-2xl border border-border bg-card overflow-hidden hover:shadow-md hover:border-primary/20 transition-all duration-300 group"
     >
-      {/* Image area — gradient with centered icon */}
-      <div className={`h-52 bg-gradient-to-br ${service.bg} flex items-center justify-center`}>
-        <div className={`w-20 h-20 rounded-2xl ${service.iconBg} flex items-center justify-center shadow-lg`}>
-          <service.icon className="w-10 h-10 text-white" />
+      {/* Image with icon overlay */}
+      <div className="relative h-52 overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={service.image}
+          alt={service.title}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className={`w-20 h-20 rounded-2xl ${service.iconBg} flex items-center justify-center shadow-lg`}>
+            <service.icon className="w-10 h-10 text-white" />
+          </div>
         </div>
       </div>
       {/* Content */}
@@ -144,6 +150,7 @@ export default function ServicesPage() {
     <main>
       {/* Hero */}
       <section className="relative min-h-[50vh] flex items-center justify-center pt-16 overflow-hidden grid-bg">
+        <NetworkBg />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-primary/8 blur-[120px] pointer-events-none" />
         <div ref={heroRef} className="relative z-10 max-w-4xl mx-auto px-6 text-center py-20">
           <motion.h1
