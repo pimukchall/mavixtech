@@ -36,9 +36,8 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 font-bold text-xl">
-          <Image src="/logo_MT_BG.png" alt="Mavixtech" width={120} height={120} className="object-contain h-10 w-auto" />
-          <span className="gradient-text">Mavixtech</span>
+        <Link href="/" className="flex items-center">
+          <Image src="/logo_MT_BG.png" alt="Mavixtech" width={160} height={160} className="object-contain h-10 w-auto" />
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
