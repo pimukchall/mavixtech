@@ -60,9 +60,23 @@ export default async function ProjectDetailPage({
 
         <div className="prose prose-invert max-w-none mb-8">
           <p className="text-muted-foreground leading-relaxed whitespace-pre-wrap text-base">
-            {project.description}
+            {project.body ?? project.description}
           </p>
         </div>
+
+        {project.solutions && project.solutions.length > 0 && (
+          <div className="mb-10">
+            <h2 className="text-xl font-bold mb-4">Key Solutions Presented</h2>
+            <div className="flex flex-col gap-4">
+              {project.solutions.map((s) => (
+                <div key={s.name} className="rounded-xl border border-border bg-card p-5">
+                  <p className="font-semibold mb-1">{s.name}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{s.detail}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {images.length > 1 && (
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
