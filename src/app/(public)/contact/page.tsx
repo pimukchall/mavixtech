@@ -23,7 +23,7 @@ const contactInfo = [
   {
     icon: Phone,
     label: "Phone",
-    value: "02-064-7556",
+    value: "02-064-7556 / 095-485-2896",
     href: "tel:020647556",
     color: "text-green-600",
     bg: "bg-green-100",
