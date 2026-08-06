@@ -337,7 +337,7 @@ const vendorGroups = [
     ],
   },
   {
-    label: "Distribution",
+    label: "Distributor",
     vendors: [
       { src: "/Logo_Vendor/Distribution/Ingram.jpg", name: "Ingram Micro" },
       { src: "/Logo_Vendor/Distribution/Synnex.png", name: "Synnex" },
