@@ -35,9 +35,9 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
         <Link href="/" className="flex items-center">
-          <Image src="/logo_MT_BG.png" alt="Mavixtech" width={160} height={160} className="object-contain h-14 w-auto md:h-10" />
+          <Image src="/logo_MT_BG.png" alt="Mavixtech" width={240} height={240} className="object-contain h-20 w-auto md:h-20" />
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
