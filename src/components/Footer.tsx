@@ -61,7 +61,7 @@ export default function Footer() {
 
         <Separator className="mb-8" />
 
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
+        <div className="text-center text-sm text-muted-foreground">
           <p>&copy; 2026 MAVIXTECH CO., LTD. All rights reserved.</p>
         </div>
       </div>
