@@ -4,6 +4,31 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { UserPlus, Layers, Rocket } from "lucide-react";
 
+function StepCard({ step, i }: { step: typeof steps[number]; i: number }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 40 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ delay: i * 0.15, duration: 0.6 }}
+      className="flex flex-col items-center text-center"
+    >
+      <div className="relative mb-6">
+        <div className="w-24 h-24 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
+          <step.icon className="w-10 h-10 text-primary" />
+        </div>
+        <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-primary flex items-center justify-center text-xs font-bold text-primary-foreground">
+          {step.step}
+        </div>
+      </div>
+      <h3 className="text-xl font-semibold mb-3">{step.title}</h3>
+      <p className="text-muted-foreground leading-relaxed">{step.description}</p>
+    </motion.div>
+  );
+}
+
 const steps = [
   {
     icon: UserPlus,
@@ -59,33 +84,9 @@ export default function HowItWorks() {
           <div className="absolute top-12 left-[calc(16.67%+2rem)] right-[calc(16.67%+2rem)] h-px bg-gradient-to-r from-transparent via-border to-transparent hidden md:block" />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
-            {steps.map((step, i) => {
-              const ref = useRef(null);
-              const inView = useInView(ref, { once: true, margin: "-60px" });
-              return (
-                <motion.div
-                  key={step.step}
-                  ref={ref}
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: i * 0.15, duration: 0.6 }}
-                  className="flex flex-col items-center text-center"
-                >
-                  <div className="relative mb-6">
-                    <div className="w-24 h-24 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-                      <step.icon className="w-10 h-10 text-primary" />
-                    </div>
-                    <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-primary flex items-center justify-center text-xs font-bold text-primary-foreground">
-                      {step.step}
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3">{step.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {step.description}
-                  </p>
-                </motion.div>
-              );
-            })}
+            {steps.map((step, i) => (
+              <StepCard key={step.step} step={step} i={i} />
+            ))}
           </div>
         </div>
       </div>
