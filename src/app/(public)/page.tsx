@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import NetworkBg from "@/components/NetworkBg";
+import Image from "next/image";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -91,8 +92,12 @@ function TrustedSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
-    <section className="py-24 px-6 bg-primary text-primary-foreground">
-      <div ref={ref} className="max-w-4xl mx-auto text-center">
+    <section className="relative py-24 px-6 text-white overflow-hidden">
+      <div className="absolute inset-0">
+        <Image src="/table.jpg" alt="" fill className="object-cover" />
+        <div className="absolute inset-0 bg-black/55" />
+      </div>
+      <div ref={ref} className="relative z-10 max-w-4xl mx-auto text-center">
         <motion.h2
           initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.55 }}
@@ -103,7 +108,7 @@ function TrustedSection() {
         <motion.p
           initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.1, duration: 0.55 }}
-          className="text-lg text-primary-foreground/80 max-w-2xl mx-auto mb-8 leading-relaxed"
+          className="text-lg text-white/80 max-w-2xl mx-auto mb-8 leading-relaxed"
         >
           MavixTech, we specialize in delivering IT, POS, and IoT solutions tailored
           for hotels, enterprises, and government organizations. Our expert team ensures
