@@ -60,6 +60,62 @@ const plans = [
   },
 ];
 
+function PlanCard({ plan, i, yearly }: { plan: typeof plans[number]; i: number; yearly: boolean }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const price = yearly ? plan.yearly : plan.monthly;
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 40 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ delay: i * 0.1, duration: 0.5 }}
+      className={plan.highlight ? "md:-mt-4 md:mb-[-1rem]" : ""}
+    >
+      <Card
+        className={`h-full relative overflow-hidden transition-all duration-300 ${
+          plan.highlight
+            ? "border-primary bg-primary/5 shadow-2xl shadow-primary/20"
+            : "border-border bg-card/60 hover:border-primary/30"
+        }`}
+      >
+        {plan.badge && (
+          <div className="absolute top-4 right-4">
+            <Badge className="bg-primary text-primary-foreground text-xs">{plan.badge}</Badge>
+          </div>
+        )}
+        <CardHeader className="p-6 pb-0">
+          <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-1">{plan.name}</p>
+          <div className="flex items-end gap-1 mb-2">
+            <span className="text-5xl font-bold">${price}</span>
+            <span className="text-muted-foreground mb-2">/mo</span>
+          </div>
+          <p className="text-sm text-muted-foreground">{plan.description}</p>
+        </CardHeader>
+        <CardContent className="p-6">
+          <Button
+            className={`w-full mb-6 ${
+              plan.highlight
+                ? "bg-primary hover:bg-primary/90 glow"
+                : "bg-secondary hover:bg-secondary/80 text-foreground"
+            }`}
+          >
+            {plan.cta}
+          </Button>
+          <ul className="space-y-3">
+            {plan.features.map((f) => (
+              <li key={f} className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Check className="w-4 h-4 text-primary shrink-0" />
+                {f}
+              </li>
+            ))}
+          </ul>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+}
+
 export default function Pricing() {
   const [yearly, setYearly] = useState(true);
   const ref = useRef(null);
@@ -112,72 +168,9 @@ export default function Pricing() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {plans.map((plan, i) => {
-            const ref = useRef(null);
-            const inView = useInView(ref, { once: true, margin: "-60px" });
-            const price = yearly ? plan.yearly : plan.monthly;
-
-            return (
-              <motion.div
-                key={plan.name}
-                ref={ref}
-                initial={{ opacity: 0, y: 40 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
-                className={plan.highlight ? "md:-mt-4 md:mb-[-1rem]" : ""}
-              >
-                <Card
-                  className={`h-full relative overflow-hidden transition-all duration-300 ${
-                    plan.highlight
-                      ? "border-primary bg-primary/5 shadow-2xl shadow-primary/20"
-                      : "border-border bg-card/60 hover:border-primary/30"
-                  }`}
-                >
-                  {plan.badge && (
-                    <div className="absolute top-4 right-4">
-                      <Badge className="bg-primary text-primary-foreground text-xs">
-                        {plan.badge}
-                      </Badge>
-                    </div>
-                  )}
-                  <CardHeader className="p-6 pb-0">
-                    <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-1">
-                      {plan.name}
-                    </p>
-                    <div className="flex items-end gap-1 mb-2">
-                      <span className="text-5xl font-bold">${price}</span>
-                      <span className="text-muted-foreground mb-2">/mo</span>
-                    </div>
-                    <p className="text-sm text-muted-foreground">
-                      {plan.description}
-                    </p>
-                  </CardHeader>
-                  <CardContent className="p-6">
-                    <Button
-                      className={`w-full mb-6 ${
-                        plan.highlight
-                          ? "bg-primary hover:bg-primary/90 glow"
-                          : "bg-secondary hover:bg-secondary/80 text-foreground"
-                      }`}
-                    >
-                      {plan.cta}
-                    </Button>
-                    <ul className="space-y-3">
-                      {plan.features.map((f) => (
-                        <li
-                          key={f}
-                          className="flex items-center gap-2 text-sm text-muted-foreground"
-                        >
-                          <Check className="w-4 h-4 text-primary shrink-0" />
-                          {f}
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            );
-          })}
+          {plans.map((plan, i) => (
+            <PlanCard key={plan.name} plan={plan} i={i} yearly={yearly} />
+          ))}
         </div>
       </div>
     </section>
