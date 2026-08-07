@@ -12,7 +12,6 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import NetworkBg from "@/components/NetworkBg";
-import Image from "next/image";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -83,63 +82,6 @@ function CapabilityCard({ icon: Icon, label, desc, delay }: {
       </div>
       <p className="font-semibold text-sm">{label}</p>
       <p className="text-xs text-muted-foreground">{desc}</p>
-    </motion.div>
-  );
-}
-
-// ─── Client logo card ─────────────────────────────────────────
-const clientGroups = [
-  {
-    label: "Hotel & Hospitality",
-    clients: [
-      { src: "/Logo_Customer/Hospitality/ASIA Hotel Bangkok.png", name: "ASIA Hotel Bangkok" },
-      { src: "/Logo_Customer/Hospitality/All Seasons Place.png", name: "All Seasons Place" },
-      { src: "/Logo_Customer/Hospitality/Asset World Corporation.png", name: "Asset World Corporation" },
-      { src: "/Logo_Customer/Hospitality/DusitThanni_Krabi.png", name: "Dusit Thanni Krabi" },
-      { src: "/Logo_Customer/Hospitality/Grand Fourwing.jpg", name: "Grand Fourwings" },
-      { src: "/Logo_Customer/Hospitality/Holiday-Inn-Sukhumvit BKK.jpg", name: "Holiday Inn Sukhumvit" },
-      { src: "/Logo_Customer/Hospitality/Holiday-Inn.png", name: "Holiday Inn" },
-      { src: "/Logo_Customer/Hospitality/Layana Resort & Spa.jpg", name: "Layana Resort & Spa" },
-      { src: "/Logo_Customer/Hospitality/MBK Group.png", name: "MBK Group" },
-      { src: "/Logo_Customer/Hospitality/Maraleina Samui.jpg", name: "Maraleina Samui" },
-      { src: "/Logo_Customer/Hospitality/Sheraton Huahin.jpg", name: "Sheraton Hua Hin" },
-      { src: "/Logo_Customer/Hospitality/Sheraton Samui.png", name: "Sheraton Samui" },
-      { src: "/Logo_Customer/Hospitality/Surang Mansion.jpg", name: "Surang Mansion" },
-      { src: "/Logo_Customer/Hospitality/Tinidee Hotel Bangkok.png", name: "Tinidee Hotel Bangkok" },
-      { src: "/Logo_Customer/Hospitality/Vanabell Samui.jpg", name: "VanaBelle Samui" },
-      { src: "/Logo_Customer/Hospitality/ibis Bangkok IMPACT.jpg", name: "ibis Bangkok IMPACT" },
-    ],
-  },
-  {
-    label: "Enterprise",
-    clients: [
-      { src: "/Logo_Customer/Enterprise/EmperorHouse.jpg", name: "Emperor House" },
-      { src: "/Logo_Customer/Enterprise/Leo Angelo.jpg", name: "Leo Angelo" },
-      { src: "/Logo_Customer/Enterprise/DConnectPlus.jpg", name: "DConnect Plus" },
-      { src: "/Logo_Customer/Enterprise/KengSengGroup.webp", name: "Keng Seng Group" },
-      { src: "/Logo_Customer/Enterprise/Noble.jpg", name: "Noble" },
-      { src: "/Logo_Customer/Enterprise/Sasipakdi.png", name: "Sasipakdi" },
-    ],
-  },
-];
-
-function ClientCard({ src, name, delay }: {
-  src: string; name: string; delay: number;
-}) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-40px" });
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay, duration: 0.4 }}
-      className="rounded-2xl border border-border bg-card p-4 flex flex-col items-center gap-3 hover:border-primary/30 hover:shadow-sm transition-all"
-    >
-      <div className="w-20 h-20 rounded-xl bg-white border border-border flex items-center justify-center overflow-hidden">
-        <Image src={src} alt={name} width={80} height={80} className="object-contain w-full h-full" />
-      </div>
-      <p className="font-semibold text-xs text-center leading-tight">{name}</p>
     </motion.div>
   );
 }
@@ -239,158 +181,6 @@ function TransformSection() {
   );
 }
 
-// ─── Clients section ──────────────────────────────────────────
-function ClientsSection() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
-  return (
-    <section className="py-24 px-6 bg-secondary/30 border-y border-border">
-      <div className="max-w-6xl mx-auto text-center">
-        <motion.p
-          ref={ref}
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-          className="text-primary text-sm font-semibold uppercase tracking-widest mb-3"
-        >
-          Our Clients
-        </motion.p>
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.05, duration: 0.55 }}
-          className="text-3xl md:text-4xl font-bold mb-16"
-        >
-          Trusted by Leading <span className="gradient-text">Organizations</span>
-        </motion.h2>
-        <div className="flex flex-col gap-14">
-          {clientGroups.map((group) => (
-            <div key={group.label}>
-              <p className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-6 border-b border-border pb-3 text-left">
-                {group.label}
-              </p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                {group.clients.map((c, i) => (
-                  <ClientCard key={c.name} src={c.src} name={c.name} delay={i * 0.05} />
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ─── Vendor data ──────────────────────────────────────────────
-const vendorGroups = [
-  {
-    label: "Network & Security System",
-    vendors: [
-      { src: "/Logo_Vendor/Network & Security System/Cisco.png", name: "Cisco" },
-      { src: "/Logo_Vendor/Network & Security System/Fortinet.png", name: "Fortinet" },
-      { src: "/Logo_Vendor/Network & Security System/hpe_aruba.png", name: "HPE Aruba" },
-      { src: "/Logo_Vendor/Network & Security System/Ruckus.png", name: "Ruckus" },
-      { src: "/Logo_Vendor/Network & Security System/Ubiquiti.png", name: "Ubiquiti" },
-      { src: "/Logo_Vendor/Network & Security System/Mikrotik.png", name: "MikroTik" },
-      { src: "/Logo_Vendor/Network & Security System/Tp-link.png", name: "TP-Link" },
-      { src: "/Logo_Vendor/Network & Security System/H3C.png", name: "H3C" },
-      { src: "/Logo_Vendor/Network & Security System/WatchGuard.png", name: "WatchGuard" },
-      { src: "/Logo_Vendor/Network & Security System/Bitdefender.png", name: "Bitdefender" },
-      { src: "/Logo_Vendor/Network & Security System/Vmware.png", name: "VMware" },
-      { src: "/Logo_Vendor/Network & Security System/Hikvision.png", name: "Hikvision" },
-      { src: "/Logo_Vendor/Network & Security System/ZKTeco.png", name: "ZKTeco" },
-      { src: "/Logo_Vendor/Network & Security System/Acsi.jpg", name: "ACSI" },
-      { src: "/Logo_Vendor/Network & Security System/Neogate.png", name: "Neogate" },
-    ],
-  },
-  {
-    label: "Server & Backup Management",
-    vendors: [
-      { src: "/Logo_Vendor/Server & Backup Management/Dell.png", name: "Dell" },
-      { src: "/Logo_Vendor/Server & Backup Management/HPE.png", name: "HPE" },
-      { src: "/Logo_Vendor/Server & Backup Management/Lenovo.jpg", name: "Lenovo" },
-      { src: "/Logo_Vendor/Server & Backup Management/Microsoft.png", name: "Microsoft" },
-      { src: "/Logo_Vendor/Server & Backup Management/Synology.png", name: "Synology" },
-      { src: "/Logo_Vendor/Server & Backup Management/Qnap.png", name: "QNAP" },
-      { src: "/Logo_Vendor/Server & Backup Management/Veeam.png", name: "Veeam" },
-      { src: "/Logo_Vendor/Server & Backup Management/Axentel.png", name: "Axentel" },
-    ],
-  },
-  {
-    label: "POS & Hospitality System",
-    vendors: [
-      { src: "/Logo_Vendor/POS & Hospitality System/Seito.png", name: "Seito" },
-      { src: "/Logo_Vendor/POS & Hospitality System/Pxier.png", name: "Pxier" },
-      { src: "/Logo_Vendor/POS & Hospitality System/Mymenu.png", name: "MyMenu" },
-      { src: "/Logo_Vendor/POS & Hospitality System/Tripla.jpg", name: "Tripla" },
-      { src: "/Logo_Vendor/POS & Hospitality System/Code-soft.jpg", name: "Code-Soft" },
-    ],
-  },
-  {
-    label: "PBX & Communication System",
-    vendors: [
-      { src: "/Logo_Vendor/PBX & Communication System/3CX.png", name: "3CX" },
-      { src: "/Logo_Vendor/PBX & Communication System/Grandstream.png", name: "Grandstream" },
-      { src: "/Logo_Vendor/PBX & Communication System/Yealink.jpg", name: "Yealink" },
-      { src: "/Logo_Vendor/PBX & Communication System/Mitel.jpg", name: "Mitel" },
-    ],
-  },
-  {
-    label: "Distributor",
-    vendors: [
-      { src: "/Logo_Vendor/Distribution/Ingram.jpg", name: "Ingram Micro" },
-      { src: "/Logo_Vendor/Distribution/Synnex.png", name: "Synnex" },
-      { src: "/Logo_Vendor/Distribution/SIS.jpg", name: "SIS" },
-      { src: "/Logo_Vendor/Distribution/VST_ECS.png", name: "VST ECS" },
-      { src: "/Logo_Vendor/Distribution/Advice.png", name: "Advice" },
-    ],
-  },
-];
-
-// ─── Vendors section ──────────────────────────────────────────
-function VendorsSection() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
-  return (
-    <section className="py-24 px-6 border-b border-border">
-      <div className="max-w-6xl mx-auto text-center">
-        <motion.p
-          ref={ref}
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-          className="text-primary text-sm font-semibold uppercase tracking-widest mb-3"
-        >
-          Technology Partners
-        </motion.p>
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.05, duration: 0.55 }}
-          className="text-3xl md:text-4xl font-bold mb-16"
-        >
-          Powered by <span className="gradient-text">World-Class Brands</span>
-        </motion.h2>
-        <div className="flex flex-col gap-14">
-          {vendorGroups.map((group) => (
-            <div key={group.label}>
-              <p className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-6 border-b border-border pb-3 text-left">
-                {group.label}
-              </p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                {group.vendors.map((v, i) => (
-                  <ClientCard key={v.name} src={v.src} name={v.name} delay={i * 0.05} />
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 // ─── Page ──────────────────────────────────────────────────────
 export default function Home() {
   const heroRef = useRef(null);
@@ -401,7 +191,7 @@ export default function Home() {
   return (
     <main>
       {/* Hero */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center pt-16 overflow-hidden grid-bg">
+      <section className="relative min-h-screen flex flex-col items-center justify-center pt-24 overflow-hidden grid-bg">
         <NetworkBg />
         <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/0 to-background pointer-events-none" />
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/8 blur-[120px] pointer-events-none" />
@@ -472,8 +262,6 @@ export default function Home() {
 
       <TrustedSection />
       <TransformSection />
-      <ClientsSection />
-      <VendorsSection />
     </main>
   );
 }

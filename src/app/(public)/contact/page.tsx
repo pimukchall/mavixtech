@@ -57,7 +57,7 @@ export default function ContactPage() {
   return (
     <main>
       {/* Hero */}
-      <section className="relative min-h-[45vh] flex items-center justify-center pt-16 overflow-hidden grid-bg">
+      <section className="relative min-h-[45vh] flex items-center justify-center pt-24 overflow-hidden grid-bg">
         <NetworkBg />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-primary/8 blur-[100px] pointer-events-none" />
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center py-20">

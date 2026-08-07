@@ -259,7 +259,7 @@ export default function AboutPage() {
   return (
     <main>
       {/* Hero */}
-      <section className="relative min-h-[55vh] flex items-center justify-center pt-16 overflow-hidden grid-bg">
+      <section className="relative min-h-[55vh] flex items-center justify-center pt-24 overflow-hidden grid-bg">
         <NetworkBg />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-primary/8 blur-[120px] pointer-events-none" />
         <div ref={heroRef} className="relative z-10 max-w-4xl mx-auto px-6 text-center py-24">
