@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
-import { Kanit, Geist_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, Kanit, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta-sans",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  display: "swap",
+});
+
 const kanit = Kanit({
-  variable: "--font-sans",
+  variable: "--font-kanit",
   subsets: ["thai", "latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
@@ -29,7 +36,7 @@ export default function RootLayout({
   return (
     <html
       lang="th"
-      className={`${kanit.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${plusJakartaSans.variable} ${kanit.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         {children}
