@@ -8,7 +8,7 @@ import {
   MonitorSmartphone,
   Network,
   Building2,
-  Utensils,
+  Phone,
 } from "lucide-react";
 import Link from "next/link";
 import NetworkBg from "@/components/NetworkBg";
@@ -183,7 +183,7 @@ function TransformSection() {
           <CapabilityCard icon={Network} label="Network & Security" desc="Enterprise-grade protection" delay={0} href="/services/network" />
           <CapabilityCard icon={MonitorSmartphone} label="POS & Hospitality System" desc="Hotel & restaurant systems" delay={0.1} href="/services/pos" />
           <CapabilityCard icon={Building2} label="Server & Backup Management" desc="Scalable infrastructure" delay={0.2} href="/services/server" />
-          <CapabilityCard icon={Utensils} label="PBX & Communication System" desc="Unified communication" delay={0.3} href="/services/pbx" />
+          <CapabilityCard icon={Phone} label="PBX & Communication System" desc="Unified communication" delay={0.3} href="/services/pbx" />
         </div>
       </div>
     </section>
