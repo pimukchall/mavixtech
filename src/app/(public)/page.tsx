@@ -65,8 +65,8 @@ function ServiceCard({ icon: Icon, title, desc, delay }: {
 }
 
 // ─── Capability card ──────────────────────────────────────────
-function CapabilityCard({ icon: Icon, label, desc, delay }: {
-  icon: React.ElementType; label: string; desc: string; delay: number;
+function CapabilityCard({ icon: Icon, label, desc, delay, href }: {
+  icon: React.ElementType; label: string; desc: string; delay: number; href: string;
 }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
@@ -76,13 +76,17 @@ function CapabilityCard({ icon: Icon, label, desc, delay }: {
       initial={{ opacity: 0, scale: 0.95 }}
       animate={inView ? { opacity: 1, scale: 1 } : {}}
       transition={{ delay, duration: 0.4 }}
-      className="rounded-2xl border border-border bg-card p-6 flex flex-col gap-3"
     >
-      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-        <Icon className="w-5 h-5 text-primary" />
-      </div>
-      <p className="font-semibold text-sm">{label}</p>
-      <p className="text-xs text-muted-foreground">{desc}</p>
+      <Link
+        href={href}
+        className="rounded-2xl border border-border bg-card p-6 flex flex-col gap-3 hover:shadow-md hover:border-primary/20 transition-all"
+      >
+        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+          <Icon className="w-5 h-5 text-primary" />
+        </div>
+        <p className="font-semibold text-sm">{label}</p>
+        <p className="text-xs text-muted-foreground">{desc}</p>
+      </Link>
     </motion.div>
   );
 }
@@ -176,10 +180,10 @@ function TransformSection() {
         </div>
 
         <div className="grid grid-cols-2 gap-4">
-          <CapabilityCard icon={Network} label="Network & Security" desc="Enterprise-grade protection" delay={0} />
-          <CapabilityCard icon={MonitorSmartphone} label="POS & Hospitality System" desc="Hotel & restaurant systems" delay={0.1} />
-          <CapabilityCard icon={Building2} label="Server & Backup Management" desc="Scalable infrastructure" delay={0.2} />
-          <CapabilityCard icon={Utensils} label="PBX & Communication System" desc="Unified communication" delay={0.3} />
+          <CapabilityCard icon={Network} label="Network & Security" desc="Enterprise-grade protection" delay={0} href="/services/network" />
+          <CapabilityCard icon={MonitorSmartphone} label="POS & Hospitality System" desc="Hotel & restaurant systems" delay={0.1} href="/services/pos" />
+          <CapabilityCard icon={Building2} label="Server & Backup Management" desc="Scalable infrastructure" delay={0.2} href="/services/server" />
+          <CapabilityCard icon={Utensils} label="PBX & Communication System" desc="Unified communication" delay={0.3} href="/services/pbx" />
         </div>
       </div>
     </section>
