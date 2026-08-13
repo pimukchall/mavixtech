@@ -20,6 +20,7 @@ const services = [
     description: "Designing and implementing secure, reliable, and scalable network infrastructures.",
     iconBg: "bg-blue-500",
     image: "/services/network.jpg",
+    href: "/services/network",
   },
   {
     icon: Server,
@@ -27,6 +28,7 @@ const services = [
     description: "Ensuring business continuity through proactive server management and data protection solutions.",
     iconBg: "bg-primary",
     image: "/services/server.jpg",
+    href: "/services/server",
   },
   {
     icon: MonitorSmartphone,
@@ -34,6 +36,7 @@ const services = [
     description: "Comprehensive POS and hospitality solutions tailored for hotels, restaurants, and resorts.",
     iconBg: "bg-green-600",
     image: "/services/hospitality.jpg",
+    href: "/services/pos",
   },
   {
     icon: Phone,
@@ -41,6 +44,7 @@ const services = [
     description: "Advanced business telephony and unified communications solutions for modern enterprises.",
     iconBg: "bg-yellow-500",
     image: "/services/pbx.jpg",
+    href: "/services/pbx",
   },
 ];
 
@@ -63,28 +67,32 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: (index % 2) * 0.15, duration: 0.5 }}
-      className="rounded-2xl border border-border bg-card overflow-hidden hover:shadow-md hover:border-primary/20 transition-all duration-300 group"
     >
-      {/* Image with icon overlay */}
-      <div className="relative h-52 overflow-hidden">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={service.image}
-          alt={service.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-        />
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className={`w-20 h-20 rounded-2xl ${service.iconBg} flex items-center justify-center shadow-lg`}>
-            <service.icon className="w-10 h-10 text-white" />
+      <Link
+        href={service.href}
+        className="block rounded-2xl border border-border bg-card overflow-hidden hover:shadow-md hover:border-primary/20 transition-all duration-300 group"
+      >
+        {/* Image with icon overlay */}
+        <div className="relative h-52 overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={service.image}
+            alt={service.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className={`w-20 h-20 rounded-2xl ${service.iconBg} flex items-center justify-center shadow-lg`}>
+              <service.icon className="w-10 h-10 text-white" />
+            </div>
           </div>
         </div>
-      </div>
-      {/* Content */}
-      <div className="p-6 text-center">
-        <h3 className="font-bold text-lg mb-2">{service.title}</h3>
-        <p className="text-sm text-muted-foreground leading-relaxed">{service.description}</p>
-      </div>
+        {/* Content */}
+        <div className="p-6 text-center">
+          <h3 className="font-bold text-lg mb-2">{service.title}</h3>
+          <p className="text-sm text-muted-foreground leading-relaxed">{service.description}</p>
+        </div>
+      </Link>
     </motion.div>
   );
 }
