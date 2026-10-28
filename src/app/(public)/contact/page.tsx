@@ -118,7 +118,7 @@ export default function ContactPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <a
-                    href="/MAVIXTECH_Company_Profile.pdf"
+                    href="/MAVIXTECH_Company_Profile_2026.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-9 h-9 rounded-lg bg-primary/10 hover:bg-primary/20 flex items-center justify-center transition-colors"
@@ -127,7 +127,7 @@ export default function ContactPage() {
                     <ExternalLink className="w-4 h-4 text-primary" />
                   </a>
                   <a
-                    href="/MAVIXTECH_Company_Profile.pdf"
+                    href="/MAVIXTECH_Company_Profile_2026.pdf"
                     download
                     className="w-9 h-9 rounded-lg bg-primary hover:bg-primary/90 flex items-center justify-center transition-colors"
                     title="Download"
